@@ -11,10 +11,10 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/home" component={HomePage} />
-          <Route path="/game/:gameId" component={GamePage} />
+        <Route exact path="/" element={<LandingPage/>}/>
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/home" element={<HomePage/>} />
+          <Route path="/game/:gameId" element={<GamePage/>} />
         </Routes>
       </div>
     </Router>
