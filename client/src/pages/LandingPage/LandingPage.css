@@ -1,3 +1,7 @@
+*{
+    color: var(--white);
+}
+
 :root {
     --green1: #113E1A;
     --green2: #1F7125;
@@ -8,8 +12,28 @@
 
 main {
     background-color: var(--green1);
-    width:auto;
+    width: auto;
     height: 100vh;
     padding: 0%;
     margin: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+main img{
+    width: 150px;
+    height: 150px;
+}
+
+h1 {
+    padding-top: 50%;
+    color: var(--white)
+}
+
+main div div {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
