@@ -1,3 +1,9 @@
+*{
+    background-color: var(--green1);
+    color: var(--white);
+    /* height: 100vh; */
+}
+
 :root {
     --green1: #113E1A;
     --green2: #1F7125;

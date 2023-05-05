@@ -7,7 +7,7 @@ function LandingPage() {
   return (
     <main>
       <div className="LandingPage">
-        <h1>Welcome!</h1>
+        <h1 className='welcomeHeader'>Welcome!</h1>
         <img src={Logo} alt='2js games logo'></img>
 
         <div>
