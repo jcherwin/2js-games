@@ -7,7 +7,7 @@ function GameBoard() {
   // ...
 
   // Maintain the game state locally
-  const [board, setBoard] = useState([...]);
+  const [board, setBoard] = useState('');
 
   // Handle user input (e.g., clicking a cell)
   const handleCellClick = (row, col) => {
