@@ -1,0 +1,15 @@
+:root {
+    --green1: #113E1A;
+    --green2: #1F7125;
+    --green3: #44B94F;
+    --white: #F8F1FF;
+    --fawn: #F0B473;
+}
+
+main {
+    background-color: var(--green1);
+    width:auto;
+    height: 100vh;
+    padding: 0%;
+    margin: 0%;
+}
