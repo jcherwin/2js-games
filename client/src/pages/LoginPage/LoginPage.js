@@ -70,7 +70,7 @@ display: error ? '' : 'none',
 };
 
 return (
-<div className="form">
+<main className="form">
 <div>
 <h1>User Registration</h1>
 </div>
@@ -99,7 +99,7 @@ value={password} type="password" />
 Submit
 </button>
 </form>
-</div>
+</main>
 );
 }
 
