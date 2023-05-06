@@ -1,10 +1,13 @@
 import React from 'react';
 import './HomePage.css';
 import games from '../../components/GameList/GameList';
+import HeaderComponent from '../../components/Header';
+// import Navbar from '../../components/Navbar/Navbar';
 
 function HomePage() {
   return (
     <main className="HomePage">
+      <HeaderComponent/>
       <div className='gameList'>
         <h1>Games</h1>
         {/* Implement logic for creating/joining a game */}
