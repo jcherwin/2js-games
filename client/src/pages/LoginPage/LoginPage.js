@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import './LoginPage.css';
+import { Main } from './LoginPageElements';
 
 function LoginPage() {
 
@@ -58,48 +59,48 @@ display: submitted ? '' : 'none',
 
 // Showing error message if error is true
 const errorMessage = () => {
-return (
-<div
-className="error"
-style={{
-display: error ? '' : 'none',
-}}>
-<h1>Please enter all the fields</h1>
-</div>
-);
+    return (
+        <div
+            className="error"
+            style={{
+            display: error ? '' : 'none',
+            }}>
+            <h1>Please enter all the fields</h1>
+        </div>
+    );
 };
 
 return (
-<main className="form">
-<div>
-<h1>User Registration</h1>
-</div>
+<Main className="form">
+    <div>
+        <h1>User Registration</h1>
+    </div>
 
-{/* Calling to the methods */}
-<div className="messages">
-{errorMessage()}
-{successMessage()}
-</div>
+    {/* Calling to the methods */}
+    <div className="messages">
+        {errorMessage()}
+        {successMessage()}
+    </div>
 
-<form>
-{/* Labels and inputs for form data */}
-<label className="label">Username</label>
-<input onChange={handleUsername} className="input"
-value={name} type="text" />
+    <form>
+        {/* Labels and inputs for form data */}
+        <label className="label">Username</label>
+        <input onChange={handleUsername} className="input"
+        value={name} type="text" />
 
-{/* <label className="label">Email</label>
-<input onChange={handleEmail} className="input"
-value={email} type="email" /> */}
+        {/* <label className="label">Email</label>
+        <input onChange={handleEmail} className="input"
+        value={email} type="email" /> */}
 
-<label className="label">Password</label>
-<input onChange={handlePassword} className="input"
-value={password} type="password" />
+        <label className="label">Password</label>
+        <input onChange={handlePassword} className="input"
+        value={password} type="password" />
 
-<button onClick={handleSubmit} className="btn" type="submit">
-Submit
-</button>
-</form>
-</main>
+        <button onClick={handleSubmit} className="btn" type="submit">
+        Submit
+        </button>
+    </form>
+</Main>
 );
 }
 
