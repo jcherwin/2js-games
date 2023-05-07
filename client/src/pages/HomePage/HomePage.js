@@ -1,7 +1,7 @@
 import React from 'react';
 import './HomePage.css';
 import games from '../../components/GameList/GameList';
-import HeaderComponent from '../../components/Header';
+import HeaderComponent from '../../components/Header/Header';
 // import Navbar from '../../components/Navbar/Navbar';
 
 function HomePage() {

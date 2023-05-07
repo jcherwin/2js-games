@@ -1,5 +1,5 @@
 
-main {
+/* main {
     width: auto;
     height: 100vh;
     padding: 0%;
@@ -7,20 +7,20 @@ main {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-}
+} */
 
-main img{
+/* main img{
     width: 150px;
     height: 150px;
-}
+} */
 
-.welcomeHeader {
+/* .welcomeHeader {
     padding-top: 50%;
-}
+} */
 
-main div div {
+/* main div div {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
