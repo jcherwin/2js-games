@@ -18,30 +18,30 @@ const customStyles = {
   },
 };
 
-// // define model
-// const ModalTest = () => {
-//   const [modalOpen, setModalOpen] = useState(false);
+// define model
+const ModalTest = () => {
+  const [modalOpen, setModalOpen] = useState(false);
 
-//   return (
-//     <div className="App">
-//       <button onClick={setModalOpen}>Open Modal</button>
-//       <Modal
-//         isOpen={modalOpen}
-//         onRequestClose={() => setModalOpen(false)}
-//         style={customStyles}
-//       >
-//         <div>Login/Signup</div>
+  return (
+    <div className="App">
+      <button onClick={setModalOpen}>Open Modal</button>
+      <Modal
+        isOpen={modalOpen}
+        onRequestClose={() => setModalOpen(false)}
+        style={customStyles}
+      >
+        <div>Login/Signup</div>
 
-//         <button onClick={() => setModalOpen(false)}>Close Modal</button>
-//       </Modal>
-//     </div>
-//   );
-// }
+        <button onClick={() => setModalOpen(false)}>Close Modal</button>
+      </Modal>
+    </div>
+  );
+}
 
 
 function DropdownElement() {
 
-  const handleMenuOne = () => {
+  const HandleMenuOne = () => {
     console.log('clicked one');
     // ModalTest();
   };
@@ -70,7 +70,8 @@ function DropdownElement() {
     <Dropdown
       trigger={<button style={{color: "var(--green1)", backgroundColor: "var(--fawn)"}}>Account</button>}
       menu={[
-        <button onClick={handleMenuOne}>Records</button>,
+        // ModalTest(),
+        <button onClick={HandleMenuOne}>Records</button>,
         <button onClick={HandleMenuTwo}>Sign Out</button>,
       ]}
     />
@@ -114,6 +115,7 @@ return (
 	<>
 	<Header>
 		<div>{DropdownElement()}</div>
+    {/* <div>{ModalTest()}</div> */}
 		{/* TEMP */}
 		<H3>Solomon Vana</H3>
 		{/* <H3>{User.name}</H3> */}
