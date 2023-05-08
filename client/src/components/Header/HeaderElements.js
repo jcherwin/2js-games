@@ -15,15 +15,13 @@ background: var(--green2);
 // background-color: #131313;
 // background-size: 20px 20px;
 
-
-
 color: var(--white);
 height: 70px;
 display: flex;
 justify-content: space-between;
 padding: 0.2rem calc((100vw - 1000px) / 2);
 z-index: 12;
-width: 100vw;
+width: auto;
 `;
 
 export const H3 = styled.h3`

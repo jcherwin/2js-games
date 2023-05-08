@@ -1,25 +1,111 @@
 import React from "react";
-import Dropdown from 'react-bootstrap/Dropdown';
+import { useState } from "react";
+// import Dropdown from 'react-bootstrap/Dropdown';
+import Modal from "react-modal";
 import { Header, H3} from "./HeaderElements";
 // import User from '';
 
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "white",
+    width: 400,
+  },
+};
+
+// // define model
+// const ModalTest = () => {
+//   const [modalOpen, setModalOpen] = useState(false);
+
+//   return (
+//     <div className="App">
+//       <button onClick={setModalOpen}>Open Modal</button>
+//       <Modal
+//         isOpen={modalOpen}
+//         onRequestClose={() => setModalOpen(false)}
+//         style={customStyles}
+//       >
+//         <div>Login/Signup</div>
+
+//         <button onClick={() => setModalOpen(false)}>Close Modal</button>
+//       </Modal>
+//     </div>
+//   );
+// }
 
 
-function BasicExample() {
+function DropdownElement() {
+
+  const handleMenuOne = () => {
+    console.log('clicked one');
+    // ModalTest();
+  };
+
+  const HandleMenuTwo = () => {
+    console.log('clicked two');
+    const [modalOpen, setModalOpen] = useState(false);
+
+    return (
+      <div className="App">
+        <button onClick={setModalOpen}>Open Modal</button>
+        <Modal
+          isOpen={modalOpen}
+          onRequestClose={() => setModalOpen(false)}
+          style={customStyles}
+        >
+          <div>Login/Signup</div>
+  
+          <button onClick={() => setModalOpen(false)}>Close Modal</button>
+        </Modal>
+      </div>
+    );
+  };
+
   return (
-    <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Dropdown Button
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+    <Dropdown
+      trigger={<button style={{color: "var(--green1)", backgroundColor: "var(--fawn)"}}>Account</button>}
+      menu={[
+        <button onClick={handleMenuOne}>Records</button>,
+        <button onClick={HandleMenuTwo}>Sign Out</button>,
+      ]}
+    />
   );
-}
+};
+
+const Dropdown = ({ trigger, menu }) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <div className="dropdown" >
+      {React.cloneElement(trigger, {
+        onClick: handleOpen,
+      })}
+      {open ? (
+        <ul className="menu">
+          {menu.map((menuItem, index) => (
+            <li key={index} className="menu-item">
+              {React.cloneElement(menuItem, {
+                onClick: () => {
+                  menuItem.props.onClick();
+                  setOpen(false);
+                },
+              })}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+};
 
 
 
@@ -27,7 +113,7 @@ const HeaderComponent = () => {
 return (
 	<>
 	<Header>
-		<div>{BasicExample()}</div>
+		<div>{DropdownElement()}</div>
 		{/* TEMP */}
 		<H3>Solomon Vana</H3>
 		{/* <H3>{User.name}</H3> */}
