@@ -36,8 +36,8 @@ export const CREATE_GAME = gql`
             currentPlayer
             isFinished
             players {
-            id
-            username
+                id
+                username
             }
         }
     }    
@@ -51,8 +51,8 @@ export const JOIN_GAME = gql`
             currentPlayer
             isFinished
             players {
-            id
-            username
+                id
+                username
             }
         }
     }
@@ -67,8 +67,8 @@ export const MAKE_MOVE = gql`
             winner
             isFinished
             players {
-            id
-            username
+                id
+                username
             }
         }
     }
