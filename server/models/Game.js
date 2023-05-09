@@ -12,7 +12,7 @@ const gameSchema = new mongoose.Schema({
   },
   winner: {
     type: String,
-    enum: ['X', 'O', 'DRAW'],
+    enum: ['X', 'O', 'DRAW', null],
     default: null,
   },
   isFinished: {

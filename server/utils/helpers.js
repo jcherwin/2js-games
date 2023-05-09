@@ -1,4 +1,4 @@
-export function checkWinner(board) {
+function checkWinner(board) {
     // Define the winning combinations
     const winningCombinations = [
         // Rows
@@ -28,7 +28,9 @@ export function checkWinner(board) {
     return null; // No winner found
 }
 
-export function isBoardFull(board) {
+function isBoardFull(board) {
     return board.every((cell) => cell !== null);
 }
+
+module.exports = { checkWinner, isBoardFull };
 
