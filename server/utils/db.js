@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const connectToDB = async () => {
   try {
+    mongoose.set('strictQuery',true)
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/2jsgames', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
