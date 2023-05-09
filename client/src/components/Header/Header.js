@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import Modal from "react-modal";
-import { Header, H3} from "./HeaderElements";
+import { Header, H3, Img, Left} from "./HeaderElements";
 import {Link} from "react-router-dom";
+import Logo from '../../assets/images/logo_2js_v2.png';
+
 // import User from '';
 
 function DropdownElement() {
@@ -85,8 +87,9 @@ const HeaderComponent = () => {
 return (
 	<>
 	<Header>
-		<div>{DropdownElement()}</div>
+		<Left>{DropdownElement()}</Left>
 		{/* TEMP */}
+    <Img src={Logo} alt="2JS logo"/>
 		<H3>Solomon Vana</H3>
 		{/* <H3>{User.name}</H3> */}
 	</Header>
