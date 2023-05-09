@@ -18,6 +18,7 @@ const startServer = async () => {
         resolvers,
         context: authMiddleware
     });
+    await server.start();
     server.applyMiddleware({ app });
 
     // if (process.env.NODE_ENV === 'production') {

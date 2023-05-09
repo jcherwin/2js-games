@@ -1,8 +1,11 @@
 const Game = require('../models/Game');
 const User = require('../models/User');
-const { PubSub } = require('apollo-server-express');
-const pubsub = new PubSub();
 const { signToken } = require('../utils/auth');
+const { checkWinner, isBoardFull } = require('../utils/helpers');
+
+const { PubSub } = require('graphql-subscriptions');
+const pubsub = new PubSub();
+
 
 const GAME_UPDATED = 'GAME_UPDATED';
 
