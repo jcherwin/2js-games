@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSubscription } from '@apollo/client';
-import GameBoard from './GameBoard'; // Import your GameBoard component
+import GameBoard from '../GameBoard/GameBoard'; // Import your GameBoard component
 import { GAME_UPDATED_SUBSCRIPTION } from '../../utils/subscriptions';
 
 function GameComponent({ gameId }) {
