@@ -1,56 +1,23 @@
 import React from "react";
 import { useState } from "react";
-// import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from "react-modal";
 import { Header, H3} from "./HeaderElements";
+import {Link} from "react-router-dom";
 // import User from '';
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "white",
-    width: 400,
-  },
-};
-
-// // define model
-// const ModalTest = () => {
-//   const [modalOpen, setModalOpen] = useState(false);
-
-//   return (
-//     <div className="App">
-//       <button onClick={setModalOpen}>Open Modal</button>
-//       <Modal
-//         isOpen={modalOpen}
-//         onRequestClose={() => setModalOpen(false)}
-//         style={customStyles}
-//       >
-//         <div>Login/Signup</div>
-
-//         <button onClick={() => setModalOpen(false)}>Close Modal</button>
-//       </Modal>
-//     </div>
-//   );
-// }
-
 
 function DropdownElement() {
 
-  const ModalTest = () => {
+  const Records = () => {
+    console.log('clicked one');
     const [modalOpen, setModalOpen] = useState(false);
   
     return (
       <div className="App">
-        <button onClick={setModalOpen}>Open Modal</button>
+        <div onClick={setModalOpen}>Open Modal</div>
         <Modal
           isOpen={modalOpen}
           onRequestClose={() => setModalOpen(false)}
-          style={customStyles}
+          // style={customStyles}
         >
           <div>Login/Signup</div>
   
@@ -60,43 +27,23 @@ function DropdownElement() {
     );
   }
 
-
-
-  // const HandleMenuOne = () => {
-  //   console.log('clicked one');
-  //   ModalTest();
-  // };
-
-  // const HandleMenuTwo = () => {
-  //   console.log('clicked two');
-  //   const [modalOpen, setModalOpen] = useState(false);
+  const SignOut = () => {
+    console.log('clicked two');
   
-  //   return (
-  //     <div className="App">
-  //       <button onClick={setModalOpen}>Open Modal</button>
-  //       <Modal
-  //         isOpen={modalOpen}
-  //         onRequestClose={() => setModalOpen(false)}
-  //         style={customStyles}
-  //       >
-  //         <div>Login/Signup</div>
-  
-  //         <button onClick={() => setModalOpen(false)}>Close Modal</button>
-  //       </Modal>
-  //     </div>
-  //   );
-  // };
+    return (
+      <div>
+        <Link to="/login">Sign Out</Link>
+    </div>
+    );
+  }
 
   return (
     <Dropdown
       trigger={<button style={{color: "var(--green1)", backgroundColor: "var(--fawn)"}}>Account</button>}
       
       menu={[
-        ModalTest(),
-        // <button onClick={ModalTest()}>Open Modal</button>,
-
-        // <button onClick={HandleMenuOne}>Records</button>,
-        // <button onClick={HandleMenuTwo}>Sign Out</button>,
+        Records(),
+        SignOut(),
       ]}
     />
   );
@@ -139,7 +86,6 @@ return (
 	<>
 	<Header>
 		<div>{DropdownElement()}</div>
-    {/* <div>{ModalTest()}</div> */}
 		{/* TEMP */}
 		<H3>Solomon Vana</H3>
 		{/* <H3>{User.name}</H3> */}
