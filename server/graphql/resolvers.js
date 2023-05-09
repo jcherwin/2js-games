@@ -3,6 +3,7 @@ const User = require('../models/User');
 const { PubSub } = require('apollo-server-express');
 const pubsub = new PubSub();
 const { signToken } = require('../utils/auth');
+const { checkWinner, isBoardFull } = require('../utils/helpers');
 
 const GAME_UPDATED = 'GAME_UPDATED';
 
