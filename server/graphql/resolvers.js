@@ -1,6 +1,7 @@
 const Game = require('../models/Game');
 const User = require('../models/User');
 const { signToken } = require('../utils/auth');
+const { checkWinner, isBoardFull } = require('../utils/helpers');
 
 const { PubSub } = require('graphql-subscriptions');
 const pubsub = new PubSub();
