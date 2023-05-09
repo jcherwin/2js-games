@@ -45,7 +45,7 @@ export const CREATE_GAME = gql`
 
 export const JOIN_GAME = gql`
     mutation joinGame($gameId: ID!, $playerId: ID!) {
-        joinGame(gameId: $game_id, playerId: $playerId) {
+        joinGame(gameId: $gameId, playerId: $playerId) {
             id
             board
             currentPlayer
@@ -60,7 +60,7 @@ export const JOIN_GAME = gql`
 
 export const MAKE_MOVE = gql`
     mutation makeMove($gameId: ID!, $playerId: ID!, $row: Int!, $col: Int!) {
-        makeMove(gameId: $game_id, playerId: $playerId, row: $row, col: $col) {
+        makeMove(gameId: $gameId, playerId: $playerId, row: $row, col: $col) {
             id
             board
             currentPlayer
