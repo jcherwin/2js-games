@@ -27,9 +27,9 @@ function LandingPage() {
         <Img src={Logo} alt='2js games logo'></Img>
 
         <Div>
-          <Link onClick={event => LoginSignInHandle(event,'Log In')} to="/login">Log In</Link>
+          <Link to="/login" state={{ title: "Login" }}>Log In</Link>
           <br/>
-          <Link onClick={event => LoginSignInHandle(event,'Create an Account')} to="/login">Create an Account</Link>
+          <Link to="/signup" state={{ title: "Create an Account" }}>Create an Account</Link>
         </Div>
         
       </div>
