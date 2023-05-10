@@ -18,8 +18,10 @@ background-color:var(--green2);
 background-size: 64px 128px;
 `;
 
-export const H3 = styled.h3`
+export const Right = styled.h3`
 padding-right: 20px;
+width:150px;
+cursor: default;
 `;
 
 export const Img = styled.img`
@@ -29,4 +31,27 @@ height: 50px;
 
 export const Left = styled.div`
 padding-left: 20px;
+width:150px;
+`;
+
+export const ModalStyle = styled.div`
+display: flex;
+background: var(--green3);
+color: var(--white);
+cursor: pointer;
+height: 25px;
+flex-direction: row;
+padding-left:20px;
+border:solid black 1px;
+&:hover{
+    background: var(--green2);
+    border: solid var(--fawn) 1px;
+}
+`;
+
+export const AccountBtn = styled.button`
+background: var(--fawn);
+color: var(--green1);
+height: 30px;
+width: 90px
 `;

@@ -26,4 +26,10 @@ height:150px;
 margin: 20px;
 `;
 
+export const Div = styled.div`
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+justify-content: center;
+`;
 

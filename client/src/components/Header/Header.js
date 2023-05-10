@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Modal from "react-modal";
-import { Header, H3, Img, Left} from "./HeaderElements";
+import { Header, Right, Img, Left, ModalStyle, AccountBtn} from "./HeaderElements";
 import {Link} from "react-router-dom";
 import Logo from '../../assets/images/logo_2js_v2.png';
 
@@ -15,7 +15,7 @@ function DropdownElement() {
   
     return (
       <div className="App">
-        <div onClick={setModalOpen}>Open Modal</div>
+        <ModalStyle onClick={setModalOpen}>Open Modal</ModalStyle>
         <Modal
           isOpen={modalOpen}
           onRequestClose={() => setModalOpen(false)}
@@ -33,15 +33,15 @@ function DropdownElement() {
     console.log('clicked two');
   
     return (
-      <div>
+      <ModalStyle to="/login">
         <Link to="/login">Sign Out</Link>
-    </div>
+    </ModalStyle>
     );
   }
 
   return (
     <Dropdown
-      trigger={<button style={{color: "var(--green1)", backgroundColor: "var(--fawn)"}}>Account</button>}
+      trigger={<AccountBtn >Account</AccountBtn>}
       
       menu={[
         Records(),
@@ -90,7 +90,7 @@ return (
 		<Left>{DropdownElement()}</Left>
 		{/* TEMP */}
     <Img src={Logo} alt="2JS logo"/>
-		<H3>Solomon Vana</H3>
+		<Right>Solomon Vana</Right>
 		{/* <H3>{User.name}</H3> */}
 	</Header>
 	</>
