@@ -12,9 +12,9 @@ function LandingPage() {
         <Img src={Logo} alt='2js games logo'></Img>
 
         <Div>
-          <Link to="/login">Log In</Link>
+          <Link to="/login" state={{ title: "Login" }}>Log In</Link>
           <br/>
-          <Link to="/login">Create an Account</Link>
+          <Link to="/signup" state={{ title: "Create an Account" }}>Create an Account</Link>
         </Div>
         
       </div>
