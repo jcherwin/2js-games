@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN, CREATE_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 import './LoginPage.css';
 import { Main } from './LoginPageElements';
@@ -47,6 +48,10 @@ function LoginPage() {
         try {
           const { data } = await loginUser({ variables: { username: name, password } });
           console.log('Logged in:', data.login);
+
+          const token = data.login.token;
+          Auth.login(token);
+          
           // Handle successful login, e.g., redirect to home page or save the token
         } catch (error) {
           console.error('Error logging in:', error);
@@ -55,7 +60,10 @@ function LoginPage() {
       } else if (title === "Create an Account") {
         try {
           const { data } = await signupUser({ variables: { username: name, password } });
-          console.log('Signed up:', data.signup);
+          console.log('Signed up:', data.createUser);
+
+          const token = data.createUser.token;
+          Auth.login(token);
           // Handle successful sign up, e.g., redirect to home page or save the token
         } catch (error) {
           console.error('Error signing up:', error);
