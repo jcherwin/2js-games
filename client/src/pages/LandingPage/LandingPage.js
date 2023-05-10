@@ -2,22 +2,23 @@ import React from 'react';
 import './LandingPage.css';
 import Logo from '../../assets/images/logo_2js_games.png';
 import {Link} from "react-router-dom";
+import { Main, Img, H1, Div } from './LandingPageElements';
 
 function LandingPage() {
   return (
-    <main>
+    <Main>
       <div className="LandingPage">
-        <h1>Welcome!</h1>
-        <img src={Logo} alt='2js games logo'></img>
+        <H1 className='welcomeHeader'>Welcome!</H1>
+        <Img src={Logo} alt='2js games logo'></Img>
 
-        <div>
+        <Div>
           <Link to="/login">Log In</Link>
           <br/>
           <Link to="/login">Create an Account</Link>
-        </div>
+        </Div>
         
       </div>
-    </main>
+    </Main>
   );
 }
 

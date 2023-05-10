@@ -1,8 +1,12 @@
+const { AuthenticationError } = require('apollo-server-express');
 const Game = require('../models/Game');
 const User = require('../models/User');
-const { PubSub } = require('apollo-server-express');
-const pubsub = new PubSub();
 const { signToken } = require('../utils/auth');
+const { checkWinner, isBoardFull } = require('../utils/helpers');
+
+const { PubSub } = require('graphql-subscriptions');
+const pubsub = new PubSub();
+
 
 const GAME_UPDATED = 'GAME_UPDATED';
 
@@ -21,53 +25,43 @@ const resolvers = {
       if (user) {
         return await User.findOne({ _id: user._id });
       }
-      throw new Error('Not logged in')
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 
   Mutation: {
     // Add your createUser, createGame, joinGame, and makeMove mutation resolvers here
     createUser: async (parent, { username, password }) => {
-      const user = await User.create({
-        username,
-        password
-      });
-
+      const user = await User.create({ username, password });
       if (!user) {
-        throw new Error('Something is wrong!');
+        throw new AuthenticationError('Something is wrong!');
       }
       const token = signToken(user);
-      return {
-        token,
-        user,
-      };
+      return { token, user };
     },
     login: async (parent, { username, password }) => {
       if (!username) {
-        throw new Error('Please provide a username');
+        throw new AuthenticationError('Please provide a username');
       }
 
       // Find the user by email or username
       const user = await User.findOne({ username });
 
       if (!user) {
-        throw new Error('User not found');
+        throw new AuthenticationError('No user found with this username');
       }
 
       // Check if the provided password is correct
-      const isPasswordValid = await bcrypt.compare(password, user.password);
+      const correctPw = await user.isCorrectPassword(password);
 
-      if (!isPasswordValid) {
-        throw new Error('Invalid password');
-      }
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+    }
 
       // Create and sign a JWT token
       const token = signToken(user);
 
-      return {
-        token,
-        user,
-      };
+      return { token, user };
     },
     createGame: async (parent, { playerId }) => {
       const user = await User.findById(playerId);
@@ -105,6 +99,11 @@ const resolvers = {
     },
     makeMove: async (parent, { gameId, playerId, row, col }) => {
       const game = await Game.findById(gameId);
+
+      console.log(gameId);
+      console.log(playerId);
+      console.log(row);
+      console.log(col);
   
       if (!game) {
         throw new Error('Game not found');
@@ -125,6 +124,9 @@ const resolvers = {
       if (game.board[row][col] !== '') {
         throw new Error('Cell is already occupied');
       }
+
+      console.log(game.currentPlayer);
+      console.log(game.board[row][col]);
   
       game.board[row][col] = game.currentPlayer;
   
