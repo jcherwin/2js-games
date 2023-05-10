@@ -33,9 +33,11 @@ function DropdownElement() {
     console.log('clicked two');
   
     return (
-      <ModalStyle to="/login">
-        <Link to="/login">Sign Out</Link>
+      <Link to="/login" style={{textDecoration: 'none'}}>
+      <ModalStyle>
+      Sign Out
     </ModalStyle>
+    </Link>
     );
   }
 
