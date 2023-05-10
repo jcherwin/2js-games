@@ -12,21 +12,23 @@ import './App.css';
 
 function App() {
 
-  const { loading, error, data } = useQuery(ME);
+  // const { loading, error, data } = useQuery(ME);
 
-  // Check for loading state
-  if (loading) return <p>Loading user data...</p>;
+  // // Check for loading state
+  // if (loading) return <p>Loading user data...</p>;
 
-  // Check for error state
-  if (error) return <p>Error fetching user data: {error.message}</p>;
+  // // Check for error state
+  // if (error) {
+  //   console.log(`Error fetching user data: ${error.message}`);
+  // }
 
-  // Get the playerId from the data
-  const playerId = data.me.id;
+  // // Get the playerId from the data
+  // const playerId = data.me.id;
 
-  const playerName = data.me.username;
+  // const playerName = data.me.username;
 
   return (
-    <UserContext.Provider value={{ playerId, playerName }}>
+    // <UserContext.Provider value={{ playerId, playerName }}>
       <Router>
         <div className="App">
           <Routes>
@@ -37,7 +39,7 @@ function App() {
           </Routes>
         </div>
       </Router>
-    </UserContext.Provider>
+    // </UserContext.Provider>
   );
 }
 
