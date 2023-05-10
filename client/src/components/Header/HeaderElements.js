@@ -43,6 +43,7 @@ height: 25px;
 flex-direction: row;
 padding-left:20px;
 border:solid black 1px;
+// textDecoration: none;
 &:hover{
     background: var(--green2);
     border: solid var(--fawn) 1px;
