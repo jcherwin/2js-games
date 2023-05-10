@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_GAME } from '../../utils/queries';
+import { GET_GAME, ME } from '../../utils/queries';
 import { MAKE_MOVE } from '../../utils/mutations';
 import GamePiece from '../GamePiece/GamePiece';
 import './GameBoard.css';
 
 function GameBoard({ gameId }) {
   // Fetch game data
-  const { loading, error, data } = useQuery(GET_GAME, {
+  const { loading: loadingGame, error: errorGame, data: dataGame } = useQuery(GET_GAME, {
     variables: { gameId },
   });
+
+  const { loading: loadingMe, error: errorMe, data: dataMe } = useQuery(ME);
 
   // Perform the MAKE_MOVE mutation
   const [makeMove] = useMutation(MAKE_MOVE);
@@ -19,18 +21,20 @@ function GameBoard({ gameId }) {
 
   // Update the local game state when the fetched game data changes
   useEffect(() => {
-    if (data && data.game) {
-      setBoard(data.game.board);
+    if (dataGame && dataGame.game) {
+      setBoard(dataGame.game.board);
     }
-  }, [data]);
+  }, [dataGame]);
 
   // Handle user input (e.g., clicking a cell)
   const handleCellClick = async (row, col) => {
+    if (loadingMe || errorMe) return; // Prevent moves if user data is loading or has errors
+
     try {
       const { data } = await makeMove({
         variables: {
           gameId,
-          playerId: 'playerId', // Replace with the actual playerId from context or props
+          playerId: dataMe.me.id,
           row,
           col,
         },
@@ -43,8 +47,9 @@ function GameBoard({ gameId }) {
     }
   };
 
-  if (loading) return <p>Loading game...</p>;
-  if (error) return <p>Error fetching game data: {error.message}</p>;
+  if (loadingGame || loadingMe) return <p>Loading game...</p>;
+  if (errorGame) return <p>Error fetching game data: {errorGame.message}</p>;
+  if (errorMe) return <p>Error fetching user data: {errorMe.message}</p>;
 
   return (
     <div className="GameBoard">

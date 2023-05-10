@@ -4,6 +4,21 @@ import Logo from '../../assets/images/logo_2js_games.png';
 import {Link} from "react-router-dom";
 import { Main, Img, H1, Div } from './LandingPageElements';
 
+
+export const LoginSignInHandle = (event, message) =>
+{
+  // console.log('Link clicked');
+
+  // // below refers to the link element
+  // console.log(event.currentTarget);
+  let newMessage = JSON.stringify(message)
+  console.log(typeof(message));
+  console.log(typeof(newMessage));
+  return (
+    <h1>{newMessage}</h1>
+  )
+};
+
 function LandingPage() {
   return (
     <Main>
@@ -21,5 +36,6 @@ function LandingPage() {
     </Main>
   );
 }
+
 
 export default LandingPage;
