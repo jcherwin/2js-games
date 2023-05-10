@@ -13,7 +13,7 @@ const projects = [
     {
         name: 'Coming Soon!',
         gameLocation: null,
-        image:null,
+        image: null,
         altText: 'Coming Soon!',
     
     },

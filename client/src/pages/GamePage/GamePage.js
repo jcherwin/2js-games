@@ -1,5 +1,5 @@
 import React from 'react';
-import GameComponent from '../../components/GameComponent/GameComponent'; // Import GameComponent
+import GameComponent from '../../components/GameComponent/GameComponent';
 import GameStatus from '../../components/GameStatus/GameStatus';
 import './GamePage.css';
 
@@ -11,7 +11,7 @@ function GamePage() {
   return (
     <div className="GamePage">
       <h1>Tic-Tac-Toe</h1>
-      <GameComponent gameId={gameId} /> {/* Use GameComponent instead of GameBoard */}
+      <GameComponent gameId={gameId} />
       <GameStatus />
     </div>
   );
