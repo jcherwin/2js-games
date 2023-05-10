@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import './LoginPage.css';
 import { Main } from './LoginPageElements';
+import {LoginSignInHandle} from '../LandingPage/LandingPage.js'
 
 function LoginPage() {
 
@@ -69,11 +70,10 @@ const errorMessage = () => {
         </div>
     );
 };
-
 return (
 <Main className="form">
     <div>
-        <h1>User Registration</h1>
+        <LoginSignInHandle/>
     </div>
 
     {/* Calling to the methods */}
