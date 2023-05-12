@@ -31,12 +31,12 @@ export const CREATE_USER = gql`
 export const CREATE_GAME = gql`
     mutation createGame($playerId: ID!) {
         createGame(playerId: $playerId) {
-            id
+            _id
             board
             currentPlayer
             isFinished
             players {
-                id
+                _id
                 username
             }
         }
@@ -46,12 +46,12 @@ export const CREATE_GAME = gql`
 export const JOIN_GAME = gql`
     mutation joinGame($gameId: ID!, $playerId: ID!) {
         joinGame(gameId: $gameId, playerId: $playerId) {
-            id
+            _id
             board
             currentPlayer
             isFinished
             players {
-                id
+                _id
                 username
             }
         }
@@ -61,13 +61,13 @@ export const JOIN_GAME = gql`
 export const MAKE_MOVE = gql`
     mutation makeMove($gameId: ID!, $playerId: ID!, $row: Int!, $col: Int!) {
         makeMove(gameId: $gameId, playerId: $playerId, row: $row, col: $col) {
-            id
+            _id
             board
             currentPlayer
             winner
             isFinished
             players {
-                id
+                _id
                 username
             }
         }
