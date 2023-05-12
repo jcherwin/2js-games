@@ -6,7 +6,7 @@
 const projects = [
     {
         name: 'Tic Tac Toe',
-        gameLocation: null,
+        gameLocation: '/game',
         image: null,
         altText: 'Tic Tac Toe',
     },

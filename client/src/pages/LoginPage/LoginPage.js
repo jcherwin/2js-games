@@ -5,7 +5,7 @@ import { LOGIN, CREATE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 import './LoginPage.css';
-import { Main } from './LoginPageElements';
+import { Main, Input } from './LoginPageElements';
 
 function LoginPage() {
   const { state } = useLocation();
@@ -114,12 +114,12 @@ function LoginPage() {
       <form>
         {/* Labels and inputs for form data */}
         <label className="label">Username</label>
-        <input onChange={handleUsername} className="input"
-          value={name} type="text" />
+        <Input onChange={handleUsername} className="input"
+          value={name} type="text" placeholder="username" />
 
         <label className="label">Password</label>
-        <input onChange={handlePassword} className="input"
-          value={password} type="password" />
+        <Input onChange={handlePassword} className="input"
+          value={password} type="password" placeholder='password' />
 
         <button onClick={handleSubmit} className="btn" type="submit">
                     Submit

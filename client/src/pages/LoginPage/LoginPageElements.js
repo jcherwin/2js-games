@@ -11,3 +11,7 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 `;
+
+export const Input = styled.input`
+color: black;
+`;
