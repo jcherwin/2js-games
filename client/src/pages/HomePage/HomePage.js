@@ -19,7 +19,7 @@ function HomePage() {
             <Container className='container'>
               <img className='image' src={game.image} alt={game.altText}></img>
               <div className='overlay'>
-                <a className='text' href={game.gameLocation} target="_blank" rel="noreferrer">{game.name}</a>
+                <a className='text' href={game.gameLocation}>{game.name}</a>
 
                 <a className='text2' href={game.gitHub} target="_blank" rel="noreferrer">
                   {/* <img className='gitImage' src={GitHub_icon} alt='GitHub Icon'/> */}
