@@ -18,7 +18,7 @@ export const ME = gql`
 
 export const GET_USER = gql`
   query getUser($userId: ID!) {
-    user(_id: $userId) {
+    getUser(_id: $userId) {
       _id
       username
       games {
@@ -34,7 +34,7 @@ export const GET_USER = gql`
 
 export const GET_GAME = gql`
   query getGame($gameId: ID!) {
-    game(_id: $gameId) {
+    getGame(id: $gameId) {
       _id
       board
       currentPlayer
@@ -50,7 +50,7 @@ export const GET_GAME = gql`
 
 export const GET_ALL_GAMES = gql`
   query getAllGames {
-    games {
+    getAllGames {
       _id
       currentPlayer
       winner

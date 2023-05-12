@@ -15,7 +15,9 @@ const resolvers = {
             return await User.findById(id);
         },
         getGame: async (parent, { id }) => {
-            return await Game.findById(id);
+            const game = await Game.findById(id)
+            pubsub.publish(`${GAME_UPDATED}_${game._id}`, { gameUpdated: game });
+            return game;
         },
         getAllGames: async () => {
             return await Game.find({});
@@ -92,6 +94,8 @@ const resolvers = {
 
             user.games.push(gameId);
             await user.save();
+
+            pubsub.publish(`${GAME_UPDATED}_${game._id}`, { gameUpdated: game });
 
             return game;
         },

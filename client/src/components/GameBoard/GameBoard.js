@@ -3,12 +3,14 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_GAME, ME } from '../../utils/queries';
 import { MAKE_MOVE } from '../../utils/mutations';
 import GamePiece from '../GamePiece/GamePiece';
+
+import { Row, Cell } from './GameBoardElements';
 import './GameBoard.css';
 
 function GameBoard({ gameId }) {
     // Fetch game data
     const { loading: loadingGame, error: errorGame, data: dataGame } = useQuery(GET_GAME, {
-        variables: { gameId },
+        variables: { gameId: gameId },
     });
 
     const { loading: loadingMe, error: errorMe, data: dataMe } = useQuery(ME);
@@ -21,8 +23,9 @@ function GameBoard({ gameId }) {
 
     // Update the local game state when the fetched game data changes
     useEffect(() => {
-        if (dataGame && dataGame.game) {
-            setBoard(dataGame.game.board);
+        if (dataGame && dataGame.getGame) {
+            //console.log("Game Piece useEffect: ", dataGame.getGame.board);
+            setBoard(dataGame.getGame.board);
         }
     }, [dataGame]);
 
@@ -34,7 +37,7 @@ function GameBoard({ gameId }) {
             const { data } = await makeMove({
                 variables: {
                     gameId,
-                    playerId: dataMe.me.id,
+                    playerId: dataMe.me._id,
                     row,
                     col,
                 },
@@ -47,24 +50,27 @@ function GameBoard({ gameId }) {
         }
     };
 
-    if (loadingGame || loadingMe) return <p>Loading game...</p>;
+    if (loadingGame || loadingMe) return <p>Loading game board...</p>;
     if (errorGame) return <p>Error fetching game data: {errorGame.message}</p>;
     if (errorMe) return <p>Error fetching user data: {errorMe.message}</p>;
+
+    //console.log("Game query: ", dataGame.getGame);
+    //console.log("Board state: ", board);
 
     return (
         <div className="GameBoard">
             {board.map((row, rowIndex) => (
-                <div key={`row-${rowIndex}`} className="row">
+                <Row key={`row-${rowIndex}`} className="row">
                     {row.map((cell, colIndex) => (
-                        <div
+                        <Cell
                             key={`cell-${rowIndex}-${colIndex}`}
                             className="cell"
                             onClick={() => handleCellClick(rowIndex, colIndex)}
                         >
                             <GamePiece piece={cell} />
-                        </div>
+                        </Cell>
                     ))}
-                </div>
+                </Row>
             ))}
         </div>
     );
