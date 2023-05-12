@@ -100,10 +100,7 @@ const Dropdown = ({ trigger, menu }) => {
 };
 
 const HeaderComponent = () => {
-    const { loading, error, data } = useQuery(ME);
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    const { loading, data } = useQuery(ME);
 
     return (
         <>
@@ -112,7 +109,9 @@ const HeaderComponent = () => {
                 {/* TEMP */}
                 <Img src={Logo} alt="2JS logo" />
                 {/* <Right>Solomon Vana</Right> */}
-                <Right>{data.me.username}</Right>
+                <Right>{loading ? (
+                    <p>Loading...</p>
+                    ) : (data.me.username)}</Right>
             </Header>
         </>
     );
