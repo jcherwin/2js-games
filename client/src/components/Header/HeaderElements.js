@@ -54,5 +54,8 @@ export const AccountBtn = styled.button`
 background: var(--fawn);
 color: var(--green1);
 height: 30px;
-width: 90px
+width: 90px;
+&:hover{filter: brightness(90%);
+cursor: pointer;
+}
 `;

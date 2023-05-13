@@ -10,34 +10,34 @@ const projects = [
         image: ticTacToe,
         altText: 'Tic Tac Toe',
     },
-    {
-        name: 'Coming Soon!',
-        gameLocation: null,
-        image: null,
-        altText: 'Coming Soon!',
+    // {
+    //     name: 'Coming Soon!',
+    //     gameLocation: null,
+    //     image: null,
+    //     altText: 'Coming Soon!',
     
-    },
-    {
-        name: 'Coming Soon!',
-        gameLocation: null,
-        image:null,
-        altText: 'Coming Soon!',
+    // },
+    // {
+    //     name: 'Coming Soon!',
+    //     gameLocation: null,
+    //     image:null,
+    //     altText: 'Coming Soon!',
     
-    },
-    {
-        name: 'Coming Soon!',
-        gameLocation: null,
-        image:null,
-        altText: 'Coming Soon!',
+    // },
+    // {
+    //     name: 'Coming Soon!',
+    //     gameLocation: null,
+    //     image:null,
+    //     altText: 'Coming Soon!',
     
-    },
-    {
-        name: 'Coming Soon!',
-        gameLocation: null,
-        image:null,
-        altText: 'Coming Soon!',
+    // },
+    // {
+    //     name: 'Coming Soon!',
+    //     gameLocation: null,
+    //     image:null,
+    //     altText: 'Coming Soon!',
     
-    },
+    // },
     
     ];
     
