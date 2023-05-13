@@ -10,15 +10,15 @@ import { setContext } from '@apollo/client/link/context';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import AuthService from './utils/auth';
 
-const LOCAL_URL = 'ws://localhost:3001/graphql';
-const DEPLOY_URL = 'ws://jjs-games.herokuapp.com/graphql';
+const LOCAL_URL = 'wss://localhost:3001/graphql';
+const DEPLOY_URL = 'wss://jjs-games.herokuapp.com/graphql';
 
 const httpLink = new HttpLink({
-    uri: '/graphql', // your server GraphQL endpoint
+    uri: 'http://localhost:3001/graphql', // your server GraphQL endpoint
 });
 
 const wsLink = new GraphQLWsLink(createClient({
-    url: DEPLOY_URL,
+    url: LOCAL_URL,
     connectionParams: {
         authToken: AuthService.getToken(),
     },
