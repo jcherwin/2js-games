@@ -24,6 +24,10 @@ background-color: var(--fawn);
 width: 150px;
 height:150px;
 margin: 20px;
+border-radius: 15%;
+&:hover{
+    filter: brightness(80%);
+}
 `;
 
 export const Div = styled.div`
@@ -39,3 +43,9 @@ flex-direction: column;
 align-items:center;
 margin-top:75px;
 `;
+
+export const FullContainer=styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`

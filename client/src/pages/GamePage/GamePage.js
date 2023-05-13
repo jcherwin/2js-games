@@ -5,7 +5,7 @@ import { ME, GET_GAME } from '../../utils/queries';
 import { CREATE_GAME, JOIN_GAME } from '../../utils/mutations';
 
 import GameComponent from '../../components/GameComponent/GameComponent';
-import './GamePage.css';
+import {} from'./GamePage.js';
 
 function GamePage() {
     //Query game from gameidparam, check if your player is not in the game, call the join game mutation

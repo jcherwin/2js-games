@@ -97,3 +97,9 @@ main {
         font: inherit;
         cursor: pointer;
       }
+
+      .image {
+        max-height:100%; 
+        max-width:100%;
+        border-radius: 15%;
+    }
