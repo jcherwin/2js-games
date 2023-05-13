@@ -14,13 +14,13 @@ function GameComponent({ gameId }) {
         variables: { gameId: gameId },
     });
 
-    //console.log("Gameid: ", gameId);
     // if (!loadingGameSub) {
     //     console.log("Subscription: ", dataGameSub);
     // }
 
     const [game, setGame] = useState(null);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (loadingGameSub) {
             refetch();
@@ -37,7 +37,6 @@ function GameComponent({ gameId }) {
                 {/* <button onClick={() => refetch()}>Start</button> */}
             </>
         );
-
     }
 
     if (errorGameSub) {

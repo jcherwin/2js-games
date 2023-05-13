@@ -16,9 +16,7 @@ function HomePage() {
                     {/* <h1>Games</h1> */}
                     {/* Implement logic for creating/joining a game */}
                     {games.map((game) =>
-
-                        <FullContainer>
-
+                        <FullContainer key={game.id}>
                             <Container className='container'>
                                 <a className='text' href={game.gameLocation}>
                                     <img className='image' src={game.image} alt={game.altText} />

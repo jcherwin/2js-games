@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN, CREATE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -28,8 +28,8 @@ function LoginPage() {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
 
-    const [loginUser, { error: loginError }] = useMutation(LOGIN);
-    const [signupUser, { error: signupError }] = useMutation(CREATE_USER);
+    const [loginUser] = useMutation(LOGIN);
+    const [signupUser] = useMutation(CREATE_USER);
 
     // Handling the name change
     const handleUsername = (e) => {
@@ -55,27 +55,22 @@ function LoginPage() {
             if (title === "Login") {
                 try {
                     const { data } = await loginUser({ variables: { username: name, password } });
-                    console.log('Logged in:', data.login);
+                    //console.log('Logged in:', data.login);
 
                     const token = data.login.token;
-                    Auth.login(token);
-
-                    // Handle successful login, e.g., redirect to home page or save the token
+                    Auth.login(token);                   
                 } catch (error) {
                     console.error('Error logging in:', error);
-                    // Handle login error, e.g., show an error message
                 }
             } else if (title === "Create an Account") {
                 try {
                     const { data } = await signupUser({ variables: { username: name, password } });
-                    console.log('Signed up:', data.createUser);
+                    //console.log('Signed up:', data.createUser);
 
                     const token = data.createUser.token;
-                    Auth.login(token);
-                    // Handle successful sign up, e.g., redirect to home page or save the token
+                    Auth.login(token);                    
                 } catch (error) {
                     console.error('Error signing up:', error);
-                    // Handle sign up error, e.g., show an error message
                 }
             }
         }

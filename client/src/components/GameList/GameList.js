@@ -5,6 +5,7 @@ import ticTacToe from '../../assets/images/tictactoe.jpg';
 
 const projects = [
     {
+        id: 0,
         name: 'Tic Tac Toe',
         gameLocation: '/game',
         image: ticTacToe,

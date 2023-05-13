@@ -46,6 +46,9 @@ function GameBoard({ gameId }) {
             // Update the local game state with the new board from the server
             setBoard(data.makeMove.board);
         } catch (error) {
+            //
+            // Can display this error out to the view
+            //
             console.error('Error making move:', error);
         }
     };

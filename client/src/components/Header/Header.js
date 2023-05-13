@@ -27,7 +27,7 @@ const customStyles = {
 function DropdownElement() {
 
     const Records = () => {
-        console.log('clicked one');
+        //console.log('clicked one');
         const [modalOpen, setModalOpen] = useState(false);
 
         return (
@@ -49,7 +49,7 @@ function DropdownElement() {
     }
 
     const SignOut = () => {
-        console.log('clicked two');
+        //console.log('clicked two');
 
         return (
             <Link to="/" style={{ textDecoration: 'none' }} onClick={() => Auth.logout()}>
@@ -107,7 +107,9 @@ const HeaderComponent = () => {
             <Header>
                 <Left>{DropdownElement()}</Left>
                 {/* TEMP */}
-                <Img src={Logo} alt="2JS logo" />
+                <Link to="/home">
+                    <Img src={Logo} alt="2JS logo" />
+                </Link>
                 {/* <Right>Solomon Vana</Right> */}
                 <Right>{loading ? (
                     <p>Loading...</p>
