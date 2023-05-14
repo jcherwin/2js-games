@@ -184,6 +184,51 @@ const resolvers = {
 
             return game;
         },
+        resetGame: async (parent, { gameId }) => {
+            const game = await Game.findById(gameId);
+
+            if (!game) {
+                throw new Error('Game not found');
+            }
+
+            game.board = [
+                ['', '', ''],
+                ['', '', ''],
+                ['', '', ''],
+            ];
+            game.winner = null;
+            game.isFinished = false;
+
+            try {
+                await game.updateOne(game);
+            } catch (error) {
+                console.log(error);
+            }
+
+            pubsub.publish(`${GAME_UPDATED}_${gameId}`, { gameUpdated: game });
+
+            return game;
+        },
+        leaveGame: async (parent, { gameId, playerId }) => {
+            const game = await Game.findById(gameId);
+
+            if (!game) {
+                throw new Error('Game not found');
+            }
+
+            if (!game.players.some(player => player._id.toString() === playerId)) {
+                throw new Error('Player not part of this game');
+            }
+
+            game.players = game.players.filter(player => player._id.toString() !== playerId);
+
+            await game.save();
+
+            // Notify subscribed clients about the game update
+            pubsub.publish(`${GAME_UPDATED}_${gameId}`, { gameUpdated: game });
+
+            return game;
+        },
     },
 
     Subscription: {

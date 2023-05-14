@@ -42,6 +42,8 @@ const typeDefs = gql`
     createGame(playerId: ID!): Game!
     joinGame(gameId: ID!, playerId: ID!): Game!
     makeMove(gameId: ID!, playerId: ID!, row: Int!, col: Int!): Game!
+    resetGame(gameId: ID!): Game
+    leaveGame(gameId: ID!, playerId: ID!): Game!
   }
 
   type Subscription {

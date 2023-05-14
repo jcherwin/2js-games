@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useSubscription, useQuery } from '@apollo/client';
+import { useSubscription, useQuery, useMutation } from '@apollo/client';
 import GameBoard from '../GameBoard/GameBoard';
-import { GET_GAME } from '../../utils/queries';
+import { GET_GAME, ME } from '../../utils/queries';
 import { GAME_UPDATED_SUBSCRIPTION } from '../../utils/subscriptions';
+import { RESET_GAME } from '../../utils/mutations';
 
-function GameComponent({ gameId }) {
-    // useSubscription is what opens the connection to recieve info on pubsub.publish
+function GameComponent({ gameId, onLeaveGame }) {
+    // useSubscription is what opens the connection to receive info on pubsub.publish
     const { data: dataGameSub, error: errorGameSub, loading: loadingGameSub } = useSubscription(GAME_UPDATED_SUBSCRIPTION, {
         variables: { gameId: gameId },
     });
@@ -14,21 +15,23 @@ function GameComponent({ gameId }) {
         variables: { gameId: gameId },
     });
 
-    // if (!loadingGameSub) {
-    //     console.log("Subscription: ", dataGameSub);
-    // }
+    const { data: meData } = useQuery(ME);
+
+    const [resetGameMutation] = useMutation(RESET_GAME);
 
     const [game, setGame] = useState(null);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        if (loadingGameSub) {
-            refetch();
-        }
+        const fetchGame = async () => {
+            await refetch();
+        };
+
+        fetchGame();
         if (dataGameSub) {
             setGame(dataGameSub?.gameUpdated);
         }
-    });
+    }, [dataGameSub, gameId, refetch]);
 
     if (loadingGameSub) {
         return (
@@ -47,6 +50,24 @@ function GameComponent({ gameId }) {
         return <p>No game data available.</p>;
     }
 
+    const handleResetGame = async () => {
+        try {
+            await resetGameMutation({ variables: { gameId } });
+        } catch (error) {
+            console.error('Error resetting game:', error);
+        }
+    };
+
+    const handleGoHome = async () => {
+        try {
+            onLeaveGame();
+            window.location.assign('/home');
+        } catch (error) {
+            console.error('Error leaving game:', error);
+        }
+    };
+
+
     return (
         <div>
             <h2>Game ID: {game._id}</h2>
@@ -55,10 +76,14 @@ function GameComponent({ gameId }) {
             <p>Connected Players:</p>
             {game.players.map((player) => (
                 <p key={player._id}>{player.username}</p>
-            )
-            )}
+            ))}
             {game.winner && <p>Winner: {game.winner}</p>}
-            {game.isFinished && <p>The game has ended.</p>}
+            {game.isFinished && (
+                <div>
+                    <button onClick={handleResetGame}>Play Again</button>
+                    <button onClick={handleGoHome}>Home</button>
+                </div>
+            )}
         </div>
     );
 }

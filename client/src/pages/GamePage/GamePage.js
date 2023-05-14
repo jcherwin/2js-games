@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ME, GET_GAME } from '../../utils/queries';
-import { CREATE_GAME, JOIN_GAME } from '../../utils/mutations';
+import { CREATE_GAME, JOIN_GAME, LEAVE_GAME } from '../../utils/mutations';
 
 import HeaderComponent from '../../components/Header/Header';
 import { Main, Div1 } from '../HomePage/HomePageElements';
@@ -26,35 +26,39 @@ function GamePage() {
 
     const [createGameMutation] = useMutation(CREATE_GAME);
     const [joinGameMutation] = useMutation(JOIN_GAME);
+    const [leaveGameMutation] = useMutation(LEAVE_GAME);
+
+    const [hasLeftGame, setHasLeftGame] = React.useState(false);
 
     React.useEffect(() => {
-        //console.log("useEffect trigger");
-        if (dataMe && dataGame) {
+        if (dataMe && dataGame && !hasLeftGame) {
             const handleJoinGame = async () => {
-                try {
-                    // console.log("Game Players: ", dataGame?.getGame.players[0]._id);
-                    // console.log("Player: ", dataMe?.me._id);
-                    if (dataGame.getGame.players.length === 1) {
-                        if (dataGame.getGame.players[0]._id !== dataMe.me._id) {
-                            console.log("Joining");
-                            const { data } = await joinGameMutation({
-                                variables: {
-                                    gameId: gameId,
-                                    playerId: dataMe.me._id
-                                },
-                            });
-                            refetch();
-                            console.log("Joined Game: ", data);
-                        }
+                const isPlayerInGame = dataGame.getGame.players.some(
+                    (player) => player._id === dataMe.me._id
+                );
+
+                if (
+                    !isPlayerInGame &&
+                    dataGame.getGame.players.length === 1 &&
+                    dataGame.getGame.players[0]._id !== dataMe.me._id
+                ) {
+                    try {
+                        const { data } = await joinGameMutation({
+                            variables: {
+                                gameId: gameId,
+                                playerId: dataMe.me._id,
+                            },
+                        });
+                        refetch();
+                    } catch (error) {
+                        console.error('Error joining game:', error);
                     }
-                } catch (error) {
-                    console.error('Error joining game:', error);
                 }
-            }
+            };
             handleJoinGame();
         }
 
-        if (dataMe && !dataGame) {       
+        if (dataMe && !dataGame) {
             const handleCreateGame = async () => {
                 try {
                     console.log("Creating Game");
@@ -63,7 +67,7 @@ function GamePage() {
                     });
                     console.log("Game data: ", data);
                     setGameId(data.createGame._id);
-    
+
                     // Use useNavigate to navigate without refreshing
                     navigate(`/game/${data.createGame._id}`);
                 } catch (error) {
@@ -75,8 +79,28 @@ function GamePage() {
         // If you see an error here, it's intentional
         // Only want useEffect to trigger on the update of these 2 vars
         // to avoid creating more than 1 game, etc
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dataMe, dataGame]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataMe, dataGame, hasLeftGame]);
+
+    // Effect for leaving the game
+    React.useEffect(() => {
+        if (hasLeftGame) {
+            const handleLeaveGame = async () => {
+                try {
+                    await leaveGameMutation({
+                        variables: {
+                            gameId: gameId,
+                            playerId: dataMe.me._id,
+                        },
+                    });
+                    refetch();
+                } catch (error) {
+                    console.error('Error leaving game:', error);
+                }
+            };
+            handleLeaveGame();
+        }
+    }, [hasLeftGame, gameId, dataMe, refetch, leaveGameMutation]);
 
     console.log("Render: ", gameId);
 
@@ -90,7 +114,7 @@ function GamePage() {
                         <p>Loading page...</p>
                     ) : (
                         <>
-                            <GameComponent gameId={gameId} />
+                            <GameComponent gameId={gameId} onLeaveGame={() => setHasLeftGame(true)} />
                         </>
                     )}
                 </div>

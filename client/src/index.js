@@ -48,9 +48,23 @@ const splitLink = split(
     authLink.concat(httpLink),
 );
 
+const cache = new InMemoryCache({
+    typePolicies: {
+        Game: {
+            fields: {
+                players: {
+                    merge(existing = [], incoming) {
+                        return incoming;
+                    },
+                },
+            },
+        },
+    },
+});
+
 const client = new ApolloClient({
     link: splitLink,
-    cache: new InMemoryCache(),
+    cache: cache,
 });
 
 ReactDOM.render(
