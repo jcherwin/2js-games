@@ -1,8 +1,9 @@
 const { AuthenticationError } = require('apollo-server-express');
 const Game = require('../models/Game');
 const User = require('../models/User');
+const Stats = require('../models/Stats');
 const { signToken } = require('../utils/auth');
-const { checkWinner, isBoardFull } = require('../utils/helpers');
+const { checkWinner, isBoardFull, updateUserStats } = require('../utils/helpers');
 
 const { PubSub } = require('graphql-subscriptions');
 const pubsub = new PubSub();
@@ -31,8 +32,9 @@ const resolvers = {
     },
 
     Mutation: {
-        createUser: async (parent, { username, password }) => {
-            const user = await User.create({ username, password });
+        createUser: async (parent, args) => {
+            const stats = await Stats.create({ tic_tac_toe: { wins: 0, losses: 0 } });
+            const user = await User.create({ ...args, stats: stats._id });
             if (!user) {
                 throw new AuthenticationError('Something is wrong!');
             }
@@ -139,33 +141,37 @@ const resolvers = {
 
             // Check for a win or draw
             // The game board matrix needs to be flattened to work with the helper functions
-            const winner = checkWinner(game.board.flat());
-            if (winner) {
+            const winnerSymbol = checkWinner(game.board.flat());
+            if (winnerSymbol) {
                 //console.log("Winner found");
-                game.winner = winner;
+                game.winner = winnerSymbol;
                 game.isFinished = true;
 
-                // const user = await User.findById(playerId);
-                // user.stats.wins += 1;
-                // await user.save();
+                // Update user stats
+                const player1 = await User.findById(game.players[0]);
+                const player2 = await User.findById(game.players[1]);
+                await updateUserStats(winnerSymbol, player1, player2);
+
             } else if (isBoardFull(game.board.flat())) {
                 //console.log("Board full");
                 game.winner = 'DRAW';
                 game.isFinished = true;
             }
 
+
+
             game.currentPlayer = game.currentPlayer === 'X' ? 'O' : 'X';
 
             //console.log("Game not saved yet");
             //console.log(game);           
 
-            try{
+            try {
                 // The save method will not work here because of a conflict with updating the arrays
                 const result = await game.updateOne(game);
                 //console.log(result);
             } catch (error) {
                 console.log(error);
-            }            
+            }
 
             //console.log("Subscription not started");
             //console.log(game);
@@ -195,6 +201,9 @@ const resolvers = {
     User: {
         games: async (parent) => {
             return await Game.find({ _id: { $in: parent.games } });
+        },
+        stats: async (parent) => {
+            return await Stats.find({ _id: { $in: parent.stats } });
         },
     },
 };

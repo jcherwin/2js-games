@@ -1,3 +1,5 @@
+const Stats = require('../models/Stats');
+
 function checkWinner(board) {
     // Define the winning combinations
     const winningCombinations = [
@@ -42,5 +44,26 @@ function isBoardFull(board) {
     return board.every((cell) => cell !== '');
 }
 
-module.exports = { checkWinner, isBoardFull };
+async function updateUserStats(winningSymbol, player1, player2) {
+    
+    const winner = winningSymbol === 'X' ? player1 : player2;
+    const loser = winningSymbol === 'X' ? player2 : player1;
+
+    const winnerStats = await Stats.findById(winner.stats);
+    const loserStats = await Stats.findById(loser.stats);
+
+    if (winnerStats && winnerStats.tic_tac_toe && loserStats && loserStats.tic_tac_toe) {
+        winnerStats.tic_tac_toe.wins += 1;
+        loserStats.tic_tac_toe.losses += 1;
+
+        await winnerStats.save();
+        await loserStats.save();
+    } else {
+        console.error("Error: Stats objects or tic_tac_toe properties not found.");
+    }
+}
+
+
+
+module.exports = { checkWinner, isBoardFull, updateUserStats };
 

@@ -5,7 +5,18 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     games: [Game!]
+    stats: Stats!
     createdAt: String!
+  }
+
+  type Stats {
+    _id: ID!
+    tic_tac_toe: TicTacToeStats!
+  }
+
+  type TicTacToeStats {
+    wins: Int
+    losses: Int
   }
 
   type Game {

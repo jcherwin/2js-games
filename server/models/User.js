@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
       ref: 'Game',
     },
   ],
+  stats: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Stats',
+  },
   createdAt: {
     type: Date,
     default: Date.now,
