@@ -1,12 +1,9 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
-width: 100vw;
-height: 100vh;
-padding: 0%;
-margin: 0%;
+// width: 100vw;
+height: auto;
 display: flex;
-align-items: center;
 flex-direction: column;
 flex-wrap: nowrap;
 `;
@@ -23,4 +20,12 @@ background: var(--green2);
 display: flex;
 align-items: center;
 flex-direction: column;
+width:60vw;
+height:325px
+`;
+
+export const H5 = styled.h5`
+display: flex;
+justify-content: flex-end;
+margin-right:5%;
 `;

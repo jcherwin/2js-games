@@ -4,6 +4,7 @@ import GameBoard from '../GameBoard/GameBoard';
 import { GET_GAME, ME } from '../../utils/queries';
 import { GAME_UPDATED_SUBSCRIPTION } from '../../utils/subscriptions';
 import { RESET_GAME } from '../../utils/mutations';
+import {Div, ConnectedPlayersBox, CurrentPlayerBox} from '../GameComponent/GameComponentElements'
 
 function GameComponent({ gameId, onLeaveGame }) {
     // useSubscription is what opens the connection to receive info on pubsub.publish
@@ -67,16 +68,23 @@ function GameComponent({ gameId, onLeaveGame }) {
         }
     };
 
-
     return (
-        <div>
-            <h5>Game ID: {game._id}</h5>
+        <Div>
+            {/* <h5>Game ID: {game._id}</h5> */}
+            <CurrentPlayerBox>
+                <p>Current Player: {game.currentPlayer}</p> 
+            </CurrentPlayerBox>
+
             <GameBoard gameId={gameId} />
-            <p>Current Player: {game.currentPlayer}</p>
+            <ConnectedPlayersBox>
             <p>Connected Players:</p>
             {game.players.map((player) => (
-                <p key={player._id}>{player.username}</p>
+                <ul>
+                    <li key={player._id}>{player.username}</li>
+                </ul>
+                // <p key={player._id}>{player.username}</p>
             ))}
+            </ConnectedPlayersBox>
             {game.winner && <p>Winner: {game.winner}</p>}
             {game.isFinished && (
                 <div>
@@ -84,7 +92,7 @@ function GameComponent({ gameId, onLeaveGame }) {
                     <button onClick={handleGoHome}>Home</button>
                 </div>
             )}
-        </div>
+        </Div>
     );
 }
 
