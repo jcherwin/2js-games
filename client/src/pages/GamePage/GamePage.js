@@ -3,11 +3,9 @@ import { useQuery, useMutation } from '@apollo/client';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ME, GET_GAME } from '../../utils/queries';
 import { CREATE_GAME, JOIN_GAME, LEAVE_GAME } from '../../utils/mutations';
-
 import HeaderComponent from '../../components/Header/Header';
-import { Main, Div1 } from '../HomePage/HomePageElements';
 import GameComponent from '../../components/GameComponent/GameComponent';
-import { Div} from './GamePageElements';
+import { Div, Main, Div1} from './GamePageElements';
 
 function GamePage() {
     //Query game from gameidparam, check if your player is not in the game, call the join game mutation

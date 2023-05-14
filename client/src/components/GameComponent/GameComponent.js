@@ -70,7 +70,7 @@ function GameComponent({ gameId, onLeaveGame }) {
 
     return (
         <div>
-            <h2>Game ID: {game._id}</h2>
+            <h5>Game ID: {game._id}</h5>
             <GameBoard gameId={gameId} />
             <p>Current Player: {game.currentPlayer}</p>
             <p>Connected Players:</p>
