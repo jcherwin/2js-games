@@ -7,7 +7,9 @@ import Auth from "../../utils/auth";
 
 import { Header, Right, Img, Left, ModalStyle, AccountBtn } from "./HeaderElements";
 import GameStats from '../GameStats/GameStats';
+
 import Logo from '../../assets/images/logo_2js_v2.png';
+import Settings from '../Settings/Settings';
 
 // import User from '';
 
@@ -48,6 +50,28 @@ function DropdownElement() {
         );
     }
 
+    const Setting = () => {
+        //console.log('clicked one');
+        const [modalOpen, setModalOpen] = useState(false);
+
+        return (
+            <div className="App">
+                <ModalStyle onClick={setModalOpen}>
+                    Settings
+                </ModalStyle>
+                <Modal
+                    isOpen={modalOpen}
+                    onRequestClose={() => setModalOpen(false)}
+                    style={customStyles}>
+                    <Settings/>
+
+                    <button onClick={() => setModalOpen(false)}
+                        style={{ backgroundColor: 'var(--fawn)' }}>Close Modal</button>
+                </Modal>
+            </div>
+        );
+    }
+
     const SignOut = () => {
         //console.log('clicked two');
 
@@ -66,6 +90,7 @@ function DropdownElement() {
 
             menu={[
                 Records(),
+                Setting(),
                 SignOut(),
             ]}
         />
