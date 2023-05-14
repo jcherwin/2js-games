@@ -11,6 +11,7 @@ border: 1px solid black;
 padding: 30px;
 &:hover{
     cursor: pointer;
-    background-color:grey;
+    background-color: var(--white);
+    filter: brightness(0.85);
 };
 `;

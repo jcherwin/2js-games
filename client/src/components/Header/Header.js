@@ -128,19 +128,19 @@ const HeaderComponent = () => {
     const { loading, data } = useQuery(ME);
 
     return (
-        <>
-            <Header>
-                <Left>{DropdownElement()}</Left>
-                {/* TEMP */}
-                <Link to="/home">
-                    <Img src={Logo} alt="2JS logo" />
-                </Link>
-                {/* <Right>Solomon Vana</Right> */}
-                <Right>{loading ? (
+        <Header>
+            <Left>{DropdownElement()}</Left>
+            <Link to="/home">
+                <Img src={Logo} alt="2JS logo" />
+            </Link>
+            <Right>
+                <div style={{backgroundColor: 'var(--green2)', width: 'fit-content'}}>
+                    {loading ? (
                     <p>Loading...</p>
-                    ) : (data.me.username)}</Right>
-            </Header>
-        </>
+                    ) : (data.me.username)}
+                </div>
+            </Right>
+        </Header>
     );
 };
 
