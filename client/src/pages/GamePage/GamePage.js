@@ -112,9 +112,7 @@ function GamePage() {
                     {!gameId ? (
                         <p>Loading page...</p>
                     ) : (
-                        <>
-                            <GameComponent gameId={gameId} onLeaveGame={() => setHasLeftGame(true)} />
-                        </>
+                        <GameComponent gameId={gameId} onLeaveGame={() => setHasLeftGame(true)} />
                     )}
                 </Div>
             </Div1>

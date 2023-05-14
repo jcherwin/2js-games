@@ -6,13 +6,14 @@ height: auto;
 display: flex;
 flex-direction: column;
 flex-wrap: nowrap;
+height: 100vh
 `;
 
 export const Div1 = styled.div`
-display:flex;
+display: flex;
 flex-direction: column;
-align-items:center;
-margin-top:75px;
+align-items: center;
+margin-top: 40px;
 `;
 
 export const Div = styled.div`
