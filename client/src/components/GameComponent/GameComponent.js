@@ -37,7 +37,7 @@ function GameComponent({ gameId, onLeaveGame }) {
     if (loadingGameSub) {
         return (
             <>
-                <p>Loading game component...</p>
+                <p>Waiting for other player to join...</p>
                 {/* <button onClick={() => refetch()}>Start</button> */}
             </>
         );
