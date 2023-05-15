@@ -5,7 +5,7 @@ import { ME, GET_GAME } from '../../utils/queries';
 import { CREATE_GAME, JOIN_GAME, LEAVE_GAME } from '../../utils/mutations';
 import HeaderComponent from '../../components/Header/Header';
 import GameComponent from '../../components/GameComponent/GameComponent';
-import { Div, Main, Div1, H5} from './GamePageElements';
+import { Div, Main, Div1, H5, Div2} from './GamePageElements';
 
 function GamePage() {
     //Query game from gameidparam, check if your player is not in the game, call the join game mutation
@@ -105,17 +105,19 @@ function GamePage() {
     return (
         <Main className="HomePage">
             <HeaderComponent />
-            <H5>Game ID: {gameId}</H5>
-            <Div1>
-                <Div className="GamePage">
-                    <h1>Tic-Tac-Toe</h1>
-                    {!gameId ? (
-                        <p>Loading page...</p>
-                    ) : (
-                        <GameComponent gameId={gameId} onLeaveGame={() => setHasLeftGame(true)} />
-                    )}
-                </Div>
-            </Div1>
+            {/* <Div2> */}
+                <H5>Game ID: {gameId}</H5>
+                <Div1>
+                    <Div className="GamePage">
+                        <h1>Tic-Tac-Toe</h1>
+                        {!gameId ? (
+                            <p>Loading page...</p>
+                        ) : (
+                            <GameComponent gameId={gameId} onLeaveGame={() => setHasLeftGame(true)} />
+                        )}
+                    </Div>
+                </Div1>
+            {/* </Div2> */}
         </Main>
     );
 }

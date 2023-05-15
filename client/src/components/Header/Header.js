@@ -4,14 +4,10 @@ import { Link } from "react-router-dom";
 import { useQuery } from '@apollo/client';
 import { ME } from '../../utils/queries';
 import Auth from "../../utils/auth";
-
 import { Header, Right, Img, Left, ModalStyle, AccountBtn } from "./HeaderElements";
 import GameStats from '../GameStats/GameStats';
-
 import Logo from '../../assets/images/logo_2js_v2.png';
 import Settings from '../Settings/Settings';
-
-// import User from '';
 
 const customStyles = {
     content: {

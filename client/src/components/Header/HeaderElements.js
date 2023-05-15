@@ -19,6 +19,8 @@ background-size: 64px 128px;
 `;
 
 export const Right = styled.h3`
+display:flex;
+justify-content: center;
 padding-right: 20px;
 width:150px;
 cursor: default;

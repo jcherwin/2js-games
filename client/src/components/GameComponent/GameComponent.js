@@ -72,7 +72,9 @@ function GameComponent({ gameId, onLeaveGame }) {
         <Div>
             {/* <h5>Game ID: {game._id}</h5> */}
             <CurrentPlayerBox>
-                <p>Current Player: {game.currentPlayer}</p> 
+                {/* trying something */}
+                
+                <p>Player's Turn: {game.currentPlayer}</p> 
             </CurrentPlayerBox>
 
             <GameBoard gameId={gameId} />
