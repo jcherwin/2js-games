@@ -1,4 +1,4 @@
-# 2js-games
+# 2JS-games
 
 ## Description
 
