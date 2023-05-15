@@ -1,5 +1,4 @@
 import React from 'react';
-import './HomePage.css';
 import games from '../../components/GameList/GameList';
 import HeaderComponent from '../../components/Header/Header';
 import { Main, Container, Div, Div1, FullContainer } from './HomePageElements';
