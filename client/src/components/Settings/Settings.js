@@ -3,7 +3,7 @@ import React from 'react';
 function Settings() {
   return (
     <div>
-        Starting settings code for model.
+        Coming Soon!
     </div>
   );
 }

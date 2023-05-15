@@ -24,13 +24,15 @@ const customStyles = {
 
 function DropdownElement() {
 
+    Modal.setAppElement('#root');
+
     const Records = () => {
         //console.log('clicked one');
         const [modalOpen, setModalOpen] = useState(false);
 
         return (
             <div className="App">
-                <ModalStyle onClick={setModalOpen}>
+                <ModalStyle onClick={() => setModalOpen(true)}>
                     Records
                 </ModalStyle>
                 <Modal
@@ -52,7 +54,7 @@ function DropdownElement() {
 
         return (
             <div className="App">
-                <ModalStyle onClick={setModalOpen}>
+                <ModalStyle onClick={() => setModalOpen(true)}>
                     Settings
                 </ModalStyle>
                 <Modal
