@@ -18,7 +18,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new GraphQLWsLink(createClient({
-    url: LOCAL_URL,
+    url: DEPLOY_URL,
     connectionParams: {
         authToken: AuthService.getToken(),
     },
