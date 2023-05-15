@@ -8,7 +8,7 @@ const size = {
     laptop: '1024px',
     laptopL: '1440px',
     desktop: '2560px'
-  };
+};
 
 export const Div = styled.div`
 @media (max-width: ${size.mobileM}){

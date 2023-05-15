@@ -8,12 +8,13 @@ const size = {
     laptop: '1024px',
     laptopL: '1440px',
     desktop: '2560px'
-  };
+};
 
 export const Div = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+min-height: 300px;
 }
 `;
 

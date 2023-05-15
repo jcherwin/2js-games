@@ -9,22 +9,22 @@ const size = {
     laptop: '1024px',
     laptopL: '1440px',
     desktop: '2560px'
-  }
+}
 
 export const Main = styled.main`
 @media (max-width: ${size.mobileM}){
-    height: auto;
+    // height: auto;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    // height: 100vh;
+    height: 100vh;
 };
 @media (max-width: ${size.desktop}){
-    height: auto;
+    // height: auto;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    // height: 100vh;
+    height: 100vh;
 };
 `;
 
@@ -67,3 +67,31 @@ export const Div2 = styled.div`
     margin-top: 40px;
 };
 `
+export const Button = styled.button`
+  background-color: var(--green3);
+  border: 1px solid var(--green3);
+  position: relative;
+
+  &:hover {
+    background-color: var(--green3);
+    border: 1px solid var(--fawn);
+  }
+`;
+
+export const Popup = styled.span`
+  display: ${props => (props.show ? 'block' : 'none')};
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  ${props => props.show && 'opacity: 1;'}
+`;

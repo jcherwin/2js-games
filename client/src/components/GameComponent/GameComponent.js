@@ -4,7 +4,7 @@ import GameBoard from '../GameBoard/GameBoard';
 import { GET_GAME, ME } from '../../utils/queries';
 import { GAME_UPDATED_SUBSCRIPTION } from '../../utils/subscriptions';
 import { RESET_GAME } from '../../utils/mutations';
-import {Div, ConnectedPlayersBox, CurrentPlayerBox, Div2, Container, Button, Div3} from '../GameComponent/GameComponentElements'
+import { Div, ConnectedPlayersBox, CurrentPlayerBox, Div2, Container, Button, Div3 } from '../GameComponent/GameComponentElements'
 
 function GameComponent({ gameId, onLeaveGame }) {
     // useSubscription is what opens the connection to receive info on pubsub.publish
@@ -71,32 +71,32 @@ function GameComponent({ gameId, onLeaveGame }) {
     return (
         <Div>
             <Container>
-            <CurrentPlayerBox>
-                <p>Player's Turn: {game.currentPlayer}</p> 
-            </CurrentPlayerBox>
+                <CurrentPlayerBox>
+                    <p>Player's Turn: {game.currentPlayer}</p>
+                </CurrentPlayerBox>
 
-            <GameBoard gameId={gameId} />
-            <ConnectedPlayersBox>
-            <p>Connected Players:</p>
-            {game.players.map((player) => (
-                <ul>
-                    <li key={player._id}>
-                        {player.username} - {game.players[0]._id === player._id ? "X" : "O" }
-                    </li>
-                </ul>
-            ))}
-            </ConnectedPlayersBox>
+                <GameBoard gameId={gameId} />
+                <ConnectedPlayersBox>
+                    <p>Connected Players:</p>
+                    {game.players.map((player) => (
+                        <ul>
+                            <li key={player._id}>
+                                {player.username} - {game.players[0]._id === player._id ? "X" : "O"}
+                            </li>
+                        </ul>
+                    ))}
+                </ConnectedPlayersBox>
             </Container>
             {game.isFinished === true &&
-            <Div2 >
-                {game.winner && <p>Winner: {game.winner}</p>}
-                {game.isFinished && (
-                    <Div3>
-                        <Button onClick={handleResetGame}>Play Again</Button>
-                        <Button onClick={handleGoHome}>Home</Button>
-                    </Div3>
-                )}
-            </Div2>
+                <Div2 >
+                    {game.winner && <p>Winner: {game.winner}</p>}
+                    {game.isFinished && (
+                        <Div3>
+                            <Button onClick={handleResetGame}>Play Again</Button>
+                            <Button onClick={handleGoHome}>Home</Button>
+                        </Div3>
+                    )}
+                </Div2>
             }
         </Div>
     );

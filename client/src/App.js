@@ -13,13 +13,13 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-        <Route exact path="/" element={Auth.loggedIn() ? <Navigate to='/home'/> : <LandingPage/>}/>
-          <Route path="/login" element={Auth.loggedIn() ? <Navigate to='/home'/> : <LoginPage/>} />
-          <Route path="/signup" element={Auth.loggedIn() ? <Navigate to='/home'/> : <LoginPage/>} />
-          <Route path="/home" element={Auth.loggedIn() ? <HomePage/> : <Navigate to='/login'/>} />
-          <Route path="/game" element={Auth.loggedIn() ? <GamePage/> : <Navigate to='/login'/>} />
-          <Route path="/game/:gameId" element={Auth.loggedIn() ? <GamePage/> : <Navigate to='/login'/>} />
-          <Route path="*" element={<NoMatch/>} />
+          <Route exact path="/" element={Auth.loggedIn() ? <Navigate to='/home' /> : <LandingPage />} />
+          <Route path="/login" element={Auth.loggedIn() ? <Navigate to='/home' /> : <LoginPage />} />
+          <Route path="/signup" element={Auth.loggedIn() ? <Navigate to='/home' /> : <LoginPage />} />
+          <Route path="/home" element={Auth.loggedIn() ? <HomePage /> : <Navigate to='/login' />} />
+          <Route path="/game" element={Auth.loggedIn() ? <GamePage /> : <Navigate to='/login' />} />
+          <Route path="/game/:gameId" element={Auth.loggedIn() ? <GamePage /> : <Navigate to='/login' />} />
+          <Route path="*" element={<NoMatch />} />
         </Routes>
       </div>
     </Router>

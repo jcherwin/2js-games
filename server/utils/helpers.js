@@ -45,7 +45,7 @@ function isBoardFull(board) {
 }
 
 async function updateUserStats(winningSymbol, player1, player2) {
-    
+
     const winner = winningSymbol === 'X' ? player1 : player2;
     const loser = winningSymbol === 'X' ? player2 : player1;
 

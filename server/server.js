@@ -41,19 +41,19 @@ const startServer = async () => {
         cache: "bounded",
         plugins: [
             // Proper shutdown for the HTTP server.      
-            ApolloServerPluginDrainHttpServer({ httpServer }),      
+            ApolloServerPluginDrainHttpServer({ httpServer }),
             // Proper shutdown for the WebSocket server.      
-            {      
-              async serverWillStart() {      
-                return {      
-                  async drainServer() {      
-                    await serverCleanup.dispose();      
-                  },      
-                };      
-              },      
-            },      
-            ApolloServerPluginLandingPageLocalDefault({ embed: true }),      
-          ],
+            {
+                async serverWillStart() {
+                    return {
+                        async drainServer() {
+                            await serverCleanup.dispose();
+                        },
+                    };
+                },
+            },
+            ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+        ],
     });
 
     await server.start();
@@ -65,7 +65,7 @@ const startServer = async () => {
 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '../client/build/index.html'));
-    });    
+    });
 
     await connectToDB();
 
@@ -75,12 +75,12 @@ const startServer = async () => {
 
     httpServer.listen(PORT, () => {
         console.log(
-          `🚀 Query endpoint ready at http://localhost:${PORT}${server.graphqlPath}`
+            `🚀 Query endpoint ready at http://localhost:${PORT}${server.graphqlPath}`
         );
         console.log(
-          `🚀 Subscription endpoint ready at ws://localhost:${PORT}${server.graphqlPath}`
+            `🚀 Subscription endpoint ready at ws://localhost:${PORT}${server.graphqlPath}`
         );
-      });
+    });
 };
 
 startServer();

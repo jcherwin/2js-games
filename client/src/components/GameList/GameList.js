@@ -16,32 +16,31 @@ const projects = [
     //     gameLocation: null,
     //     image: null,
     //     altText: 'Coming Soon!',
-    
+
     // },
     // {
     //     name: 'Coming Soon!',
     //     gameLocation: null,
     //     image:null,
     //     altText: 'Coming Soon!',
-    
+
     // },
     // {
     //     name: 'Coming Soon!',
     //     gameLocation: null,
     //     image:null,
     //     altText: 'Coming Soon!',
-    
+
     // },
     // {
     //     name: 'Coming Soon!',
     //     gameLocation: null,
     //     image:null,
     //     altText: 'Coming Soon!',
-    
+
     // },
-    
-    ];
-    
-    export default projects;
-    
-    
+
+];
+
+export default projects;
+

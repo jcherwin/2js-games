@@ -44,7 +44,7 @@ align-items:center;
 margin-top:75px;
 `;
 
-export const FullContainer=styled.div`
+export const FullContainer = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;

@@ -61,7 +61,7 @@ function DropdownElement() {
                     isOpen={modalOpen}
                     onRequestClose={() => setModalOpen(false)}
                     style={customStyles}>
-                    <Settings/>
+                    <Settings />
 
                     <button onClick={() => setModalOpen(false)}
                         style={{ backgroundColor: 'var(--fawn)' }}>Close Modal</button>
@@ -132,9 +132,9 @@ const HeaderComponent = () => {
                 <Img src={Logo} alt="2JS logo" />
             </Link>
             <Right>
-                <div style={{backgroundColor: 'var(--green2)', width: 'fit-content'}}>
+                <div style={{ backgroundColor: 'var(--green2)', width: 'fit-content' }}>
                     {loading ? (
-                    <p>Loading...</p>
+                        <p>Loading...</p>
                     ) : (data.me.username)}
                 </div>
             </Right>

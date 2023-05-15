@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ME, GET_GAME } from '../../utils/queries';
 import { CREATE_GAME, JOIN_GAME, LEAVE_GAME } from '../../utils/mutations';
 import HeaderComponent from '../../components/Header/Header';
 import GameComponent from '../../components/GameComponent/GameComponent';
-import { Div, Main, Div1, H5, Div2} from './GamePageElements';
+import { Div, Main, Div1, H5, Div2, Button, Popup } from './GamePageElements';
 
 function GamePage() {
     //Query game from gameidparam, check if your player is not in the game, call the join game mutation
@@ -13,7 +13,7 @@ function GamePage() {
     const navigate = useNavigate();
 
     // Initialize gameId state with gameIdParam value
-    const [gameId, setGameId] = React.useState(gameIdParam);
+    const [gameId, setGameId] = useState(gameIdParam);
 
     // eslint-disable-next-line no-unused-vars
     const { loading: loadingMe, data: dataMe, refetch } = useQuery(ME);
@@ -26,9 +26,9 @@ function GamePage() {
     const [joinGameMutation] = useMutation(JOIN_GAME);
     const [leaveGameMutation] = useMutation(LEAVE_GAME);
 
-    const [hasLeftGame, setHasLeftGame] = React.useState(false);
+    const [hasLeftGame, setHasLeftGame] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (dataMe && dataGame && !hasLeftGame) {
             const handleJoinGame = async () => {
                 const isPlayerInGame = dataGame.getGame.players.some(
@@ -81,7 +81,7 @@ function GamePage() {
     }, [dataMe, dataGame, hasLeftGame]);
 
     // Effect for leaving the game
-    React.useEffect(() => {
+    useEffect(() => {
         if (hasLeftGame) {
             const handleLeaveGame = async () => {
                 try {
@@ -102,20 +102,42 @@ function GamePage() {
 
     console.log("Render: ", gameId);
 
+    const gameLink = `https://jjs-games.herokuapp.com/game/${gameId}`
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    function copyLink() {
+        navigator.clipboard.writeText(gameLink);
+        setShowPopup(true);
+
+        setTimeout(() => {
+            setShowPopup(false);
+        }, 1500);
+    }
+
+
     return (
         <Main className="HomePage">
             <HeaderComponent />
-                <H5>Game ID: {gameId}</H5>
-                <Div1>
-                    <Div className="GamePage">
-                        <h1>Tic-Tac-Toe</h1>
-                        {!gameId ? (
-                            <p>Loading page...</p>
-                        ) : (
-                            <GameComponent gameId={gameId} onLeaveGame={() => setHasLeftGame(true)} />
-                        )}
-                    </Div>
-                </Div1>
+            <H5>Send this link to a friend: &nbsp;
+                <Button onClick={() => copyLink()}>
+                    Copy Link
+                    <Popup show={showPopup}>
+                        Copied!
+                    </Popup>
+                </Button>
+            </H5>
+
+            <Div1>
+                <Div className="GamePage">
+                    <h1>Tic-Tac-Toe</h1>
+                    {!gameId ? (
+                        <p>Loading page...</p>
+                    ) : (
+                        <GameComponent gameId={gameId} onLeaveGame={() => setHasLeftGame(true)} />
+                    )}
+                </Div>
+            </Div1>
         </Main>
     );
 }
