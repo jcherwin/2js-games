@@ -197,6 +197,7 @@ const resolvers = {
                 ['', '', ''],
                 ['', '', ''],
             ];
+            game.currentPlayer = 'X';
             game.winner = null;
             game.isFinished = false;
 

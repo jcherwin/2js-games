@@ -56,7 +56,7 @@ function GamePage() {
             handleJoinGame();
         }
 
-        if (dataMe && !dataGame) {
+        if (dataMe && !dataGame && !gameIdParam) {
             const handleCreateGame = async () => {
                 try {
                     console.log("Creating Game");
