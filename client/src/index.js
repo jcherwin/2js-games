@@ -14,11 +14,11 @@ const LOCAL_URL = 'ws://localhost:3001/graphql';
 const DEPLOY_URL = 'wss://jjs-games.herokuapp.com/graphql';
 
 const httpLink = new HttpLink({
-    uri: 'http://localhost:3001/graphql', // your server GraphQL endpoint
+    uri: '/graphql', // your server GraphQL endpoint
 });
 
 const wsLink = new GraphQLWsLink(createClient({
-    url: LOCAL_URL,
+    url: DEPLOY_URL,
     connectionParams: {
         authToken: AuthService.getToken(),
     },
