@@ -1,6 +1,5 @@
 *{
     color: var(--white);
-    /* height: 100vh; */
 }
 
 :root {
@@ -67,7 +66,7 @@ main {
         position: absolute;
       
         list-style-type: none;
-        margin: 5px 0;
+        margin: 0px 0;
         padding: 0;
       
         border: 1px solid grey;
@@ -97,3 +96,9 @@ main {
         font: inherit;
         cursor: pointer;
       }
+
+      .image {
+        max-height:100%; 
+        max-width:100%;
+        border-radius: 15%;
+    }

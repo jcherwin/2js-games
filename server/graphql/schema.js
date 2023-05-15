@@ -5,7 +5,18 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     games: [Game!]
+    stats: Stats!
     createdAt: String!
+  }
+
+  type Stats {
+    _id: ID!
+    tic_tac_toe: TicTacToeStats!
+  }
+
+  type TicTacToeStats {
+    wins: Int
+    losses: Int
   }
 
   type Game {
@@ -31,6 +42,8 @@ const typeDefs = gql`
     createGame(playerId: ID!): Game!
     joinGame(gameId: ID!, playerId: ID!): Game!
     makeMove(gameId: ID!, playerId: ID!, row: Int!, col: Int!): Game!
+    resetGame(gameId: ID!): Game
+    leaveGame(gameId: ID!, playerId: ID!): Game!
   }
 
   type Subscription {

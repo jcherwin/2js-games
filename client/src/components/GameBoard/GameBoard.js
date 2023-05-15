@@ -1,68 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_GAME } from '../../utils/queries';
+import { GET_GAME, ME } from '../../utils/queries';
 import { MAKE_MOVE } from '../../utils/mutations';
 import GamePiece from '../GamePiece/GamePiece';
-import './GameBoard.css';
+import { Row, Cell, Div } from './GameBoardElements';
 
 function GameBoard({ gameId }) {
-  // Fetch game data
-  const { loading, error, data } = useQuery(GET_GAME, {
-    variables: { gameId },
-  });
+    // Fetch game data
+    const { loading: loadingGame, error: errorGame, data: dataGame } = useQuery(GET_GAME, {
+        variables: { gameId: gameId },
+    });
 
-  // Perform the MAKE_MOVE mutation
-  const [makeMove] = useMutation(MAKE_MOVE);
+    const { loading: loadingMe, error: errorMe, data: dataMe } = useQuery(ME);
 
-  // Maintain the game state locally
-  const [board, setBoard] = useState([]);
+    // Perform the MAKE_MOVE mutation
+    const [makeMove] = useMutation(MAKE_MOVE);
 
-  // Update the local game state when the fetched game data changes
-  useEffect(() => {
-    if (data && data.game) {
-      setBoard(data.game.board);
-    }
-  }, [data]);
+    // Maintain the game state locally
+    const [board, setBoard] = useState([]);
 
-  // Handle user input (e.g., clicking a cell)
-  const handleCellClick = async (row, col) => {
-    try {
-      const { data } = await makeMove({
-        variables: {
-          gameId,
-          playerId: 'playerId', // Replace with the actual playerId from context or props
-          row,
-          col,
-        },
-      });
+    // Update the local game state when the fetched game data changes
+    useEffect(() => {
+        if (dataGame && dataGame.getGame) {
+            //console.log("Game Piece useEffect: ", dataGame.getGame.board);
+            setBoard(dataGame.getGame.board);
+        }
+    }, [dataGame]);
 
-      // Update the local game state with the new board from the server
-      setBoard(data.makeMove.board);
-    } catch (error) {
-      console.error('Error making move:', error);
-    }
-  };
+    // Handle user input (e.g., clicking a cell)
+    const handleCellClick = async (row, col) => {
+        if (loadingMe || errorMe) return; // Prevent moves if user data is loading or has errors
 
-  if (loading) return <p>Loading game...</p>;
-  if (error) return <p>Error fetching game data: {error.message}</p>;
+        try {
+            const { data } = await makeMove({
+                variables: {
+                    gameId,
+                    playerId: dataMe.me._id,
+                    row,
+                    col,
+                },
+            });
 
-  return (
-    <div className="GameBoard">
-      {board.map((row, rowIndex) => (
-        <div key={`row-${rowIndex}`} className="row">
-          {row.map((cell, colIndex) => (
-            <div
-              key={`cell-${rowIndex}-${colIndex}`}
-              className="cell"
-              onClick={() => handleCellClick(rowIndex, colIndex)}
-            >
-              <GamePiece piece={cell} />
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
+            // Update the local game state with the new board from the server
+            setBoard(data.makeMove.board);
+        } catch (error) {
+            //
+            // Can display this error out to the view
+            //
+            console.error('Error making move:', error);
+        }
+    };
+
+    if (loadingGame || loadingMe) return <p>Loading game board...</p>;
+    if (errorGame) return <p>Error fetching game data: {errorGame.message}</p>;
+    if (errorMe) return <p>Error fetching user data: {errorMe.message}</p>;
+
+    //console.log("Game query: ", dataGame.getGame);
+    //console.log("Board state: ", board);
+
+    return (
+        <Div className="GameBoard">
+            {board.map((row, rowIndex) => (
+                <Row key={`row-${rowIndex}`} className="row">
+                    {row.map((cell, colIndex) => (
+                        <Cell
+                            key={`cell-${rowIndex}-${colIndex}`}
+                            className="cell"
+                            onClick={() => handleCellClick(rowIndex, colIndex)}
+                        >
+                            <GamePiece piece={cell} />
+                        </Cell>
+                    ))}
+                </Row>
+            ))}
+        </Div>
+    );
 }
 
 export default GameBoard;

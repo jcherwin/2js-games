@@ -3,28 +3,36 @@ import { gql } from '@apollo/client';
 export const ME = gql`
   query me {
     me {
-      id
+      _id
       username
       games {
-        id
+        _id
         players {
-          id
+          _id
           username
+        }
+      }
+      stats {
+        _id
+        tic_tac_toe {
+          wins
+          losses
         }
       }
     }
   }
 `;
 
+
 export const GET_USER = gql`
   query getUser($userId: ID!) {
-    user(id: $userId) {
-      id
+    getUser(_id: $userId) {
+      _id
       username
       games {
-        id
+        _id
         players {
-          id
+          _id
           username
         }
       }
@@ -34,14 +42,14 @@ export const GET_USER = gql`
 
 export const GET_GAME = gql`
   query getGame($gameId: ID!) {
-    game(id: $gameId) {
-      id
+    getGame(id: $gameId) {
+      _id
       board
       currentPlayer
       winner
       isFinished
       players {
-        id
+        _id
         username
       }
     }
@@ -50,13 +58,13 @@ export const GET_GAME = gql`
 
 export const GET_ALL_GAMES = gql`
   query getAllGames {
-    games {
-      id
+    getAllGames {
+      _id
       currentPlayer
       winner
       isFinished
       players {
-        id
+        _id
         username
       }
     }
