@@ -1,5 +1,4 @@
 import React from 'react';
-import './GamePiece.css';
 import {Div} from './GamePieceElement'
 
 function GamePiece({ piece }) {

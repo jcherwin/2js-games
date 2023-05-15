@@ -3,9 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_GAME, ME } from '../../utils/queries';
 import { MAKE_MOVE } from '../../utils/mutations';
 import GamePiece from '../GamePiece/GamePiece';
-
-import { Row, Cell } from './GameBoardElements';
-import './GameBoard.css';
+import { Row, Cell, Div } from './GameBoardElements';
 
 function GameBoard({ gameId }) {
     // Fetch game data
@@ -61,7 +59,7 @@ function GameBoard({ gameId }) {
     //console.log("Board state: ", board);
 
     return (
-        <div className="GameBoard">
+        <Div className="GameBoard">
             {board.map((row, rowIndex) => (
                 <Row key={`row-${rowIndex}`} className="row">
                     {row.map((cell, colIndex) => (
@@ -75,7 +73,7 @@ function GameBoard({ gameId }) {
                     ))}
                 </Row>
             ))}
-        </div>
+        </Div>
     );
 }
 

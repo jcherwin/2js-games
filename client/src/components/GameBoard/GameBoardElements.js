@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const Div = styled.div`
+padding: 5%;
+`;
+
 export const Row = styled.div`
 display: flex;
 background-color:white;

@@ -105,7 +105,6 @@ function GamePage() {
     return (
         <Main className="HomePage">
             <HeaderComponent />
-            {/* <Div2> */}
                 <H5>Game ID: {gameId}</H5>
                 <Div1>
                     <Div className="GamePage">
@@ -117,7 +116,6 @@ function GamePage() {
                         )}
                     </Div>
                 </Div1>
-            {/* </Div2> */}
         </Main>
     );
 }

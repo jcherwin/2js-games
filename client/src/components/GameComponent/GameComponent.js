@@ -4,7 +4,7 @@ import GameBoard from '../GameBoard/GameBoard';
 import { GET_GAME, ME } from '../../utils/queries';
 import { GAME_UPDATED_SUBSCRIPTION } from '../../utils/subscriptions';
 import { RESET_GAME } from '../../utils/mutations';
-import {Div, ConnectedPlayersBox, CurrentPlayerBox} from '../GameComponent/GameComponentElements'
+import {Div, ConnectedPlayersBox, CurrentPlayerBox, Div2, Container, Button, Div3} from '../GameComponent/GameComponentElements'
 
 function GameComponent({ gameId, onLeaveGame }) {
     // useSubscription is what opens the connection to receive info on pubsub.publish
@@ -70,10 +70,8 @@ function GameComponent({ gameId, onLeaveGame }) {
 
     return (
         <Div>
-            {/* <h5>Game ID: {game._id}</h5> */}
+            <Container>
             <CurrentPlayerBox>
-                {/* trying something */}
-                
                 <p>Player's Turn: {game.currentPlayer}</p> 
             </CurrentPlayerBox>
 
@@ -86,16 +84,20 @@ function GameComponent({ gameId, onLeaveGame }) {
                         {player.username} - {game.players[0]._id === player._id ? "X" : "O" }
                     </li>
                 </ul>
-                // <p key={player._id}>{player.username}</p>
             ))}
             </ConnectedPlayersBox>
-            {game.winner && <p>Winner: {game.winner}</p>}
-            {game.isFinished && (
-                <div>
-                    <button onClick={handleResetGame}>Play Again</button>
-                    <button onClick={handleGoHome}>Home</button>
-                </div>
-            )}
+            </Container>
+            {game.isFinished === true &&
+            <Div2 >
+                {game.winner && <p>Winner: {game.winner}</p>}
+                {game.isFinished && (
+                    <Div3>
+                        <Button onClick={handleResetGame}>Play Again</Button>
+                        <Button onClick={handleGoHome}>Home</Button>
+                    </Div3>
+                )}
+            </Div2>
+            }
         </Div>
     );
 }

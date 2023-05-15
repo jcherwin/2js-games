@@ -17,14 +17,14 @@ export const Main = styled.main`
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 100vh
+    // height: 100vh;
 };
 @media (max-width: ${size.desktop}){
     height: auto;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 100vh
+    // height: 100vh;
 };
 `;
 
@@ -39,7 +39,7 @@ export const Div1 = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
+    margin: 40px;
 }
 `;
 
@@ -49,7 +49,8 @@ display: flex;
 align-items: center;
 flex-direction: column;
 width:60vw;
-height:325px
+padding:20px;
+// height:325px
 `;
 
 export const H5 = styled.h5`

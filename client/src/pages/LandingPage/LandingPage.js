@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Logo from '../../assets/images/logo_2js_games.png';
 import { Main, Img, H1, Div } from './LandingPageElements';
-import './LandingPage.css';
 
 function LandingPage() {
 
