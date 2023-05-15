@@ -50,7 +50,7 @@ Link to the GitHub repository:
 
 This image is an example of what to expect when viewing the website.
 
-![Image of the landing page](/Landingpage_ss.png)
+![Image of the landing page](/assets/images/Landingpage_ss.png)
 
 ## Credits
 
