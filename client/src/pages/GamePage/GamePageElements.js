@@ -50,7 +50,7 @@ align-items: center;
 flex-direction: column;
 width:60vw;
 padding:20px;
-// height:325px
+min-height: 317px;
 `;
 
 export const H5 = styled.h5`
