@@ -5,7 +5,6 @@ import { LOGIN, CREATE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 import { Main, Div1, Div2, H1, Input } from './LoginPageElements';
-import './LoginPage.css';
 
 function LoginPage() {
 

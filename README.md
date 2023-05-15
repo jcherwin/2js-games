@@ -4,9 +4,9 @@
 
 We created `2js-games` because we wanted to make a online webpage and game platform that would allow friends to play multiplayer games online.
 
-We wanted to create a application that allows for a user to create an account, join a multiplayer game, and have the ability to view a record of their wins and losses.
+We wanted to create an application that allows for a user to create an account, join a multiplayer game, and have the ability to view a record of their wins and losses.
 
-Over the course of this project, the team gained an in-depth understanding of `graphQl subscriptions`, `useEffects`, `Hooks`, `MongoDb`, and the `React App`. Using the afore mentioned resources along with many others. A full stack game website was created, and as a whole, the teams gained a significantly deeper understanding of each of the projects components and how the interact with each other.
+Over the course of this project, the team gained an in-depth understanding of `graphQl subscriptions`, `useEffects`, `Hooks`, `MongoDb`, and the `React App`. Using the aforementioned resources along with many others, a full-stack game website was created, and as a whole, the team gained a significantly deeper understanding of each of the project's components and how they interact with each other.
 
 ## User Story
 
