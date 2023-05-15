@@ -35,6 +35,7 @@ const resolvers = {
         createUser: async (parent, args) => {
             const stats = await Stats.create({ tic_tac_toe: { wins: 0, losses: 0 } });
             const user = await User.create({ ...args, stats: stats._id });
+            user.stats = stats;
             if (!user) {
                 throw new AuthenticationError('Something is wrong!');
             }
@@ -248,7 +249,7 @@ const resolvers = {
             return await Game.find({ _id: { $in: parent.games } });
         },
         stats: async (parent) => {
-            return await Stats.find({ _id: { $in: parent.stats } });
+            return await Stats.findById(parent.stats);
         },
     },
 };

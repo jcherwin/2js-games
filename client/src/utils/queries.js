@@ -12,9 +12,17 @@ export const ME = gql`
           username
         }
       }
+      stats {
+        _id
+        tic_tac_toe {
+          wins
+          losses
+        }
+      }
     }
   }
 `;
+
 
 export const GET_USER = gql`
   query getUser($userId: ID!) {
