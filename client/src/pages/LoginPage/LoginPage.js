@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
 import { LOGIN, CREATE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
-import { Main, Input } from './LoginPageElements';
+import { Main, Div1, Div2, H1, Input } from './LoginPageElements';
 import './LoginPage.css';
 
 function LoginPage() {
 
     // Determines the utility of the page based off the url path
-    const [title, setTitle] = useState('');
-    switch (window.location.pathname) {
-        case "/login":
-            if(title === ''){ setTitle('Login') } 
-            break;
-        case "/signup":
-            if(title === ''){ setTitle('Create an Account') } 
-            break;
-        default: window.location.assign('/');
-    }
+    // const [title, setTitle] = useState('');
+    // switch (window.location.pathname) {
+    //     case "/login":
+    //         if(title === ''){ setTitle('Login') } 
+    //         break;
+    //     case "/signup":
+    //         if(title === ''){ setTitle('Create an Account') } 
+    //         break;
+    //     default: window.location.assign('/');
+    // }
+
+    const PATH = window.location.pathname;
 
     // States for registration
     const [name, setName] = useState('');
@@ -52,23 +55,27 @@ function LoginPage() {
         } else {
             setError(false);
 
-            if (title === "Login") {
+            if (PATH === "/login") {
                 try {
-                    const { data } = await loginUser({ variables: { username: name, password } });
+                    const { data } = await loginUser(
+                        { variables: { username: name, password } }
+                    );
                     //console.log('Logged in:', data.login);
 
                     const token = data.login.token;
-                    Auth.login(token);                   
+                    Auth.login(token);
                 } catch (error) {
                     console.error('Error logging in:', error);
                 }
-            } else if (title === "Create an Account") {
+            } else if (PATH === "/signup") {
                 try {
-                    const { data } = await signupUser({ variables: { username: name, password } });
+                    const { data } = await signupUser(
+                        { variables: { username: name, password } }
+                    );
                     //console.log('Signed up:', data.createUser);
 
                     const token = data.createUser.token;
-                    Auth.login(token);                    
+                    Auth.login(token);
                 } catch (error) {
                     console.error('Error signing up:', error);
                 }
@@ -105,8 +112,26 @@ function LoginPage() {
     return (
         <Main className="form">
             <div>
-                <h1>{title}</h1>
+                {PATH === "/login" ? (
+                    <Div1>
+                        <Div2>
+                            <Link to="/signup">← Go to Signup</Link>
+                            <Link to="/">🏠 Home</Link>
+                        </Div2>
+                        <H1>Login</H1>
+                    </Div1>
+                ) : (
+                    <Div1>
+                        <Div2>
+                            <Link to="/login">← Go to Login</Link>
+                            <Link to="/">🏠 Home</Link>
+                        </Div2>
+                        <H1>Create an Account</H1>
+                    </Div1>
+                )}
+
             </div>
+
 
             {/* Calling to the methods */}
             <div className="messages">

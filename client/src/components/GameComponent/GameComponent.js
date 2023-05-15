@@ -82,7 +82,9 @@ function GameComponent({ gameId, onLeaveGame }) {
             <p>Connected Players:</p>
             {game.players.map((player) => (
                 <ul>
-                    <li key={player._id}>{player.username}</li>
+                    <li key={player._id}>
+                        {player.username} - {game.players[0]._id === player._id ? "X" : "O" }
+                    </li>
                 </ul>
                 // <p key={player._id}>{player.username}</p>
             ))}
